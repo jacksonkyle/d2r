@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matthew Jackson - Custom Art Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Background Image */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAgIDxwYXR0ZXJuIGlkPSJwYWludCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiPgogICAgICA8cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzAwMCIvPgogICAgICA8Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSIzMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDBkMGZmIiBzdHJva2Utd2lkdGg9IjMiIG9wYWNpdHk9IjAuMyIvPgogICAgPC9wYXR0ZXJuPgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI3BhaW50KSIvPgo8L3N2Zz4K');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.4;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid #00d0ff;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00d0ff, #ff6b6b, #4ecdc4);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(0, 208, 255, 0.5);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background: rgba(0, 208, 255, 0.2);
+            color: #00d0ff;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 100px 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5));
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #00d0ff, #ff6b6b, #4ecdc4, #ffeb3b);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 50px rgba(0, 208, 255, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            color: #cccccc;
+        }
+
+        .hero-logo {
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-image {
+            max-width: 600px;
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 0 30px rgba(0, 208, 255, 0.3));
+            transition: transform 0.3s ease;
+        }
+
+        .logo-image:hover {
+            transform: scale(1.05);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 80px 0;
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 50px;
+            background: linear-gradient(45deg, #00d0ff, #ff6b6b);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 208, 255, 0.1);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 208, 255, 0.2);
+            border-color: rgba(0, 208, 255, 0.5);
+        }
+
+        .gallery-item img, .gallery-item video {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img, .gallery-item:hover video {
+            transform: scale(1.05);
+        }
+
+        .gallery-item-content {
+            padding: 20px;
+        }
+
+        .gallery-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #00d0ff;
+        }
+
+        .gallery-item p {
+            color: #cccccc;
+            font-size: 0.9rem;
+        }
+
+        /* Filter Buttons */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: rgba(0, 208, 255, 0.1);
+            color: #00d0ff;
+            border: 2px solid #00d0ff;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: #00d0ff;
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 208, 255, 0.3);
+        }
+
+        /* About Section */
+        .about {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about h2 {
+            margin-bottom: 30px;
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            color: #cccccc;
+            margin-bottom: 20px;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            background: rgba(0, 208, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 208, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(0, 208, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .contact-item h3 {
+            color: #00d0ff;
+            margin-bottom: 10px;
+        }
+
+        /* Modal for full-size images */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-content {
+            position: relative;
+            margin: auto;
+            display: block;
+            max-width: none;
+            max-height: 90vh;
+            width: auto;
+            height: auto;
+            top: 50%;
+            transform: translateY(-50%);
+            object-fit: contain;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #00d0ff;
+        }
+
+        /* Navigation arrows */
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 30px;
+            font-weight: bold;
+            color: #f1f1f1;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            padding: 15px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .modal-nav:hover {
+            background: rgba(0, 208, 255, 0.7);
+            color: #000;
+        }
+
+        .modal-prev {
+            left: 20px;
+        }
+
+        .modal-next {
+            right: 20px;
+        }
+
+        /* Image counter */
+        .modal-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #f1f1f1;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul {
+                justify-content: center;
+            }
+
+            .logo-image {
+                max-width: 350px;
+            }
+
+            .modal-nav {
+                font-size: 24px;
+                padding: 10px 15px;
+            }
+
+            .modal-prev {
+                left: 10px;
+            }
+
+            .modal-next {
+                right: 10px;
+            }
+
+            .modal-counter {
+                bottom: 10px;
+                font-size: 14px;
+                padding: 8px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Matthew Jackson</div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#custom-projects">Custom Projects</a></li>
+                        <li><a href="#murals">Murals</a></li>
+                        <li><a href="#renovations">Renovations</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-logo">
+                <img src="d2r logo (2).jpg" alt="D2R Murals Logo" class="logo-image">
+            </div>
+            <p>Transforming spaces with creative vision and artistic excellence</p>
+            <p>Educational Murals • Outdoor Art • Custom Projects • Creative Renovations</p>
+        </div>
+    </section>
+
+    <section id="custom-projects" class="section">
+        <div class="container">
+            <h2>Custom Projects</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="Images/Custom Projects/Custom Project DBZ Skate Deck.jpg" alt="DBZ Skate Deck" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>DBZ Skate Deck</h3>
+                        <p>Custom Dragon Ball Z themed skateboard deck with vibrant character artwork</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Custom Projects/Custom Project Goku MUI.jpg" alt="Goku MUI" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Goku Ultra Instinct</h3>
+                        <p>Detailed Master Ultra Instinct Goku artwork showcasing advanced technique</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Custom Projects/Custom Project Surfboards Relax & Enjoy.jpg" alt="Surfboards Relax & Enjoy" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Surfboards - Relax & Enjoy</h3>
+                        <p>Custom surfboard designs with tropical themes and inspirational messaging</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Custom Projects/Custom Project Tiki.jpg" alt="Tiki Art" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Tiki Art</h3>
+                        <p>Traditional Polynesian-inspired tiki artwork with authentic cultural elements</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <video controls>
+                        <source src="Images/Custom Projects/Custom Project Tiki.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="gallery-item-content">
+                        <h3>Tiki Creation Process</h3>
+                        <p>Time-lapse video showing the creation process of custom tiki artwork</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Custom Projects/School Bus Painting.jpg" alt="School Bus Painting" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>School Bus Art Project</h3>
+                        <p>Educational vehicle transformation with colorful, engaging artwork for children</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Custom Projects/School Bus Painting (2).jpg" alt="School Bus Painting 2" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>School Bus Art Project (Detail)</h3>
+                        <p>Close-up view of detailed paintwork on educational vehicle project</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="murals" class="section">
+        <div class="container">
+            <h2>Murals</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="Images/Murals/Aligator Pride.jpg" alt="Alligator Pride" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Alligator Pride</h3>
+                        <p>School mascot mural featuring vibrant alligator artwork with school pride themes</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Murals/Battle of the Giant Magnet.jpg" alt="Battle of the Giant Magnet" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Battle of the Giant Magnet</h3>
+                        <p>Educational science-themed mural depicting magnetic forces and scientific concepts</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Murals/Catch a Wave.jpg" alt="Catch a Wave" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Catch a Wave</h3>
+                        <p>Ocean-themed mural with dynamic wave motion and surfing culture elements</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Murals/College Park Earth.jpg" alt="College Park Earth" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>College Park Earth</h3>
+                        <p>Environmental awareness mural featuring Earth and sustainability themes</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Murals/College Park Mountain Lion.jpg" alt="College Park Mountain Lion" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>College Park Mountain Lion</h3>
+                        <p>Majestic mountain lion mascot mural with realistic detail and school branding</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <video controls>
+                        <source src="Images/Murals/Custom Mural Ocean Waves.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="gallery-item-content">
+                        <h3>Ocean Waves Mural Process</h3>
+                        <p>Time-lapse creation of custom ocean waves mural showing technique and progression</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Murals/Custom Project Sandbridge VA.jpg" alt="Sandbridge VA" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Sandbridge VA Beach Scene</h3>
+                        <p>Local Virginia Beach area artwork celebrating coastal beauty and community</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Murals/Custom Project Sandbridge VA (2).jpg" alt="Sandbridge VA 2" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Sandbridge VA (Detail View)</h3>
+                        <p>Detailed section of Sandbridge mural showing artistic technique and color work</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Murals/Custom Project Sandbridge VA (3).jpg" alt="Sandbridge VA 3" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Sandbridge VA (Progress Shot)</h3>
+                        <p>Work-in-progress view of Sandbridge mural creation process</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Murals/Custom Project Sandbridge VA (4).jpg" alt="Sandbridge VA 4" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Sandbridge VA (Completion)</h3>
+                        <p>Final completed Sandbridge mural showing full composition and detail</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Murals/Custom Project Squeeze-ems Lemonade.jpg" alt="Squeeze-ems Lemonade" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Squeeze-ems Lemonade</h3>
+                        <p>Fun, colorful commercial mural for local lemonade business with playful design</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Murals/Custom Project US Flag.jpg" alt="US Flag" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>US Flag Mural</h3>
+                        <p>Patriotic American flag mural with artistic interpretation and weathered texture</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Murals/Customer Project Goku SSJ.jpg" alt="Goku SSJ" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Goku Super Saiyan</h3>
+                        <p>Dynamic anime-style mural featuring Goku in Super Saiyan transformation</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Murals/Dolphins.jpg" alt="Dolphins" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Dolphins</h3>
+                        <p>Marine life mural featuring graceful dolphins in their natural ocean habitat</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Murals/Elephant SDR Forces.jpg" alt="Elephant SDR Forces" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Elephant SDR Forces</h3>
+                        <p>Military tribute mural honoring Special Forces with powerful elephant symbolism</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Murals/Exotic Sun.jpg" alt="Exotic Sun" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Exotic Sun</h3>
+                        <p>Tropical sunset mural with vibrant colors and exotic landscape elements</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Murals/Guy Crunching 100lb.jpg" alt="Guy Crunching 100lb" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Fitness Motivation Mural</h3>
+                        <p>Gym mural featuring strength training motivation and athletic achievement</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Murals/Its a Blast.jpg" alt="Its a Blast" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>It's a Blast!</h3>
+                        <p>Energetic explosion-themed mural with dynamic action and bright colors</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Murals/Kingston Elementary Library.jpg" alt="Kingston Elementary Library" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Kingston Elementary Library</h3>
+                        <p>Educational library mural promoting reading and literacy with book themes</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Murals/Landstown Dolphin (1).jpg" alt="Landstown Dolphin" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Landstown Dolphin</h3>
+                        <p>School mascot mural featuring Landstown High School's dolphin with school colors</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Murals/Landstown Dolphins (1).jpg" alt="Landstown Dolphins" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Landstown Dolphins Team</h3>
+                        <p>Multiple dolphin mascots representing school spirit and team unity</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Murals/Lions Reading.jpg" alt="Lions Reading" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Lions Reading</h3>
+                        <p>Educational mural combining lion mascot with reading promotion and literacy</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Murals/Marvelous Machines.jpg" alt="Marvelous Machines" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Marvelous Machines</h3>
+                        <p>STEM-focused mural featuring mechanical engineering and technology themes</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Murals/Norfolk Children's Museum.jpg" alt="Norfolk Children's Museum" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Norfolk Children's Museum</h3>
+                        <p>Interactive children's mural designed for educational engagement and play</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Murals/Norfolk Children's Museum (2).jpg" alt="Norfolk Children's Museum 2" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Norfolk Children's Museum (Section 2)</h3>
+                        <p>Additional section of children's museum mural with interactive elements</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Murals/Norfolk Children's Museum (3).jpg" alt="Norfolk Children's Museum 3" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Norfolk Children's Museum (Section 3)</h3>
+                        <p>Continuation of museum mural featuring child-friendly educational content</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Murals/Norfolk Children's Museum (4).jpg" alt="Norfolk Children's Museum 4" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Norfolk Children's Museum (Section 4)</h3>
+                        <p>Fourth section showcasing detailed work in children's educational environment</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Murals/Norfolk Children's Museum (5).jpg" alt="Norfolk Children's Museum 5" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Norfolk Children's Museum (Section 5)</h3>
+                        <p>Final section of comprehensive children's museum mural project</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Murals/Ocean Front Painting.jpg" alt="Ocean Front Painting" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Ocean Front Painting</h3>
+                        <p>Coastal scene mural capturing the beauty of oceanfront landscapes</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Murals/Plaza Middle Planetarium.jpg" alt="Plaza Middle Planetarium" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Plaza Middle Planetarium</h3>
+                        <p>Space-themed educational mural for school planetarium with cosmic elements</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Murals/Virginia Elementary.jpg" alt="Virginia Elementary" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Virginia Elementary</h3>
+                        <p>Elementary school mural promoting learning and academic achievement</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Murals/Wacky Racers.jpg" alt="Wacky Racers" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Wacky Racers</h3>
+                        <p>Fun cartoon-style racing mural with colorful characters and vehicles</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Murals/Women Crunching 100lb.jpg" alt="Women Crunching 100lb" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Women's Fitness Motivation</h3>
+                        <p>Empowering gym mural celebrating women's strength and fitness achievements</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="renovations" class="section">
+        <div class="container">
+            <h2>Creative Renovations</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="Images/Renovations/Custom Bathroom Renovation.jpg" alt="Custom Bathroom Renovation" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Custom Bathroom Renovation</h3>
+                        <p>Complete bathroom transformation with artistic tile work and custom design elements</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Renovations/Custom Bathroom Renovation (2).jpg" alt="Custom Bathroom Renovation 2" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Bathroom Renovation (Detail)</h3>
+                        <p>Close-up view of intricate bathroom renovation work and artistic finishes</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Renovations/Custom Bathroom Renovation (3).jpg" alt="Custom Bathroom Renovation 3" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Bathroom Renovation (Final)</h3>
+                        <p>Completed bathroom renovation showcasing full transformation results</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Renovations/Custom Cabinets Renovation.jpg" alt="Custom Cabinets Renovation" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Custom Cabinets Renovation</h3>
+                        <p>Kitchen cabinet makeover with artistic finishes and custom color schemes</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Renovations/Custom Fireplace Renovation.jpg" alt="Custom Fireplace Renovation" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Custom Fireplace Renovation</h3>
+                        <p>Dramatic fireplace transformation with artistic stonework and design elements</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Renovations/Custom Kitchen Renovation.jpg" alt="Custom Kitchen Renovation" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Custom Kitchen Renovation</h3>
+                        <p>Complete kitchen transformation with artistic backsplash and custom features</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Renovations/Custom Kitchen Renovation (2).jpg" alt="Custom Kitchen Renovation 2" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Kitchen Renovation (Detail)</h3>
+                        <p>Detailed view of kitchen renovation showcasing artistic tile and design work</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Images/Renovations/Custom Outback Fence Renovation.jpg" alt="Custom Outback Fence Renovation" onclick="openModal(this)">
+                    <div class="gallery-item-content">
+                        <h3>Outback Fence Renovation</h3>
+                        <p>Outdoor fence transformation with artistic design and weatherproof finishes</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <video controls>
+                        <source src="Images/Renovations/Custom Outback Waterfall.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="gallery-item-content">
+                        <h3>Outback Waterfall Creation</h3>
+                        <p>Time-lapse of custom waterfall installation and landscape renovation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <h2>About Matthew Jackson</h2>
+                <p>Matthew Jackson is a versatile custom artist specializing in transforming spaces through creative vision and artistic excellence. With expertise spanning educational murals, outdoor art installations, custom projects, and creative renovations, Matthew brings unique artistic solutions to diverse environments.</p>
+                <p>From school partnerships and community engagement to residential transformations, Matthew's work demonstrates a commitment to both artistic quality and functional design. Each project showcases problem-solving through artistic intervention, creating spaces that inspire, educate, and transform.</p>
+                <p>Whether creating large-scale public murals, intimate custom pieces, or complete space renovations, Matthew's approach combines technical skill with creative vision to deliver results that exceed expectations and stand the test of time.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <p>Ready to transform your space with custom art? Let's discuss your vision and bring it to life.</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>Commission Work</h3>
+                    <p>Custom murals, art pieces, and space transformations</p>
+                </div>
+                <div class="contact-item">
+                    <h3>Consultations</h3>
+                    <p>Free initial consultation for all project types</p>
+                </div>
+                <div class="contact-item">
+                    <h3>Renovations</h3>
+                    <p>Creative renovation solutions for homes and businesses</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for full-size images -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close">&times;</span>
+        <button class="modal-nav modal-prev" onclick="previousImage(event)">&lt;</button>
+        <button class="modal-nav modal-next" onclick="nextImage(event)">&gt;</button>
+        <img class="modal-content" id="modalImage">
+        <div class="modal-counter" id="modalCounter"></div>
+    </div>
+
+    <script>
+        // Global variables for modal navigation
+        let currentImageIndex = 0;
+        let galleryImages = [];
+
+        // Initialize gallery images array
+        function initializeGallery() {
+            galleryImages = Array.from(document.querySelectorAll('.gallery-item img[onclick]'));
+        }
+
+        // Modal functionality
+        function openModal(img) {
+            initializeGallery();
+            currentImageIndex = galleryImages.indexOf(img);
+
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const counter = document.getElementById('modalCounter');
+
+            modal.style.display = 'block';
+            modalImg.src = img.src;
+            counter.textContent = `${currentImageIndex + 1} / ${galleryImages.length}`;
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        function previousImage(event) {
+            event.stopPropagation();
+            if (galleryImages.length === 0) return;
+
+            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+            updateModalImage();
+        }
+
+        function nextImage(event) {
+            event.stopPropagation();
+            if (galleryImages.length === 0) return;
+
+            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+            updateModalImage();
+        }
+
+        function updateModalImage() {
+            const modalImg = document.getElementById('modalImage');
+            const counter = document.getElementById('modalCounter');
+
+            modalImg.src = galleryImages[currentImageIndex].src;
+            counter.textContent = `${currentImageIndex + 1} / ${galleryImages.length}`;
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            const modal = document.getElementById('imageModal');
+            if (modal.style.display === 'block') {
+                if (event.key === 'ArrowLeft') {
+                    previousImage(event);
+                } else if (event.key === 'ArrowRight') {
+                    nextImage(event);
+                } else if (event.key === 'Escape') {
+                    closeModal();
+                }
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all gallery items
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(item);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - D2R Murals</title>
+    <meta name="description" content="Detailed view of our premium wall art and custom designs. High-quality materials and professional installation available.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Product page specific styles */
+        .product-hero {
+            background-color: #f8f9fa;
+            padding: 2rem 0;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.875rem;
+            color: #666;
+        }
+
+        .breadcrumb a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .product-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .product-gallery {
+            position: sticky;
+            top: 120px;
+            height: fit-content;
+        }
+
+        .main-image {
+            width: 100%;
+            aspect-ratio: 4/3;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .main-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .thumbnail-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+        }
+
+        .thumbnail {
+            aspect-ratio: 1;
+            border-radius: 5px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .thumbnail.active {
+            border-color: #3498db;
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-details {
+            padding: 2rem 0;
+        }
+
+        .product-category {
+            color: #3498db;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .product-price {
+            font-size: 2rem;
+            color: #3498db;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stars {
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        .star {
+            color: #ffd700;
+        }
+
+        .rating-text {
+            color: #666;
+            font-size: 0.875rem;
+        }
+
+        .product-description {
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: #555;
+        }
+
+        .product-options {
+            margin-bottom: 2rem;
+        }
+
+        .option-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .option-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .variant-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .variant-option {
+            padding: 0.75rem 1rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: white;
+        }
+
+        .variant-option:hover {
+            border-color: #3498db;
+        }
+
+        .variant-option.selected {
+            border-color: #3498db;
+            background-color: #3498db;
+            color: white;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .quantity-btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background-color: #f8f9fa;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .quantity-btn:hover {
+            background-color: #e9ecef;
+        }
+
+        .quantity-input {
+            width: 60px;
+            height: 40px;
+            border: none;
+            text-align: center;
+            outline: none;
+            font-weight: 600;
+        }
+
+        .add-to-cart-section {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-add-to-cart {
+            flex: 1;
+            padding: 1rem 2rem;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-add-to-cart:hover {
+            background-color: #34495e;
+        }
+
+        .btn-add-to-cart:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+
+        .btn-wishlist {
+            padding: 1rem;
+            background-color: transparent;
+            color: #e74c3c;
+            border: 2px solid #e74c3c;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-wishlist:hover {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .product-features {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .features-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+
+        .features-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .features-list i {
+            color: #27ae60;
+            width: 16px;
+        }
+
+        .product-tabs {
+            margin: 3rem 0;
+        }
+
+        .tab-buttons {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 2rem;
+        }
+
+        .tab-button {
+            padding: 1rem 2rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button.active {
+            color: #2c3e50;
+            border-bottom-color: #3498db;
+        }
+
+        .tab-content {
+            display: none;
+            line-height: 1.6;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .shipping-info {
+            background-color: #e8f6f3;
+            padding: 1rem;
+            border-radius: 5px;
+            border-left: 4px solid #27ae60;
+        }
+
+        .related-products {
+            margin: 4rem 0;
+        }
+
+        .related-products h3 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            color: #2c3e50;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .product-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .product-gallery {
+                position: static;
+            }
+
+            .product-title {
+                font-size: 2rem;
+            }
+
+            .add-to-cart-section {
+                flex-direction: column;
+            }
+
+            .tab-buttons {
+                flex-wrap: wrap;
+            }
+
+            .tab-button {
+                flex: 1;
+                min-width: 120px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .variant-options {
+                flex-direction: column;
+            }
+
+            .variant-option {
+                text-align: center;
+            }
+
+            .thumbnail-gallery {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="contact-info">
+                    <span><i class="fas fa-phone"></i> (555) 123-4567</span>
+                    <span><i class="fas fa-envelope"></i> info@d2rmurals.com</span>
+                </div>
+                <div class="header-actions">
+                    <a href="#" class="account-link" id="accountLink">
+                        <i class="fas fa-user"></i> Account
+                    </a>
+                    <a href="#" class="cart-link" id="cartToggle">
+                        <i class="fas fa-shopping-cart"></i> Cart (<span id="cartCount">0</span>)
+                    </a>
+                </div>
+            </div>
+
+            <div class="header-main">
+                <div class="logo">
+                    <h1><a href="index.html">D2R Murals</a></h1>
+                    <p>Premium Wall Art & Custom Designs</p>
+                </div>
+
+                <div class="search-bar">
+                    <form class="search-form" id="searchForm">
+                        <input type="text" id="searchInput" placeholder="Search for murals, artwork, designs..." autocomplete="off">
+                        <button type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+                    <div class="search-suggestions" id="searchSuggestions"></div>
+                </div>
+            </div>
+
+            <nav class="main-nav">
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="catalog.html">Catalog <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="catalog.html?category=wall-murals">Wall Murals</a></li>
+                            <li><a href="catalog.html?category=canvas-art">Canvas Art</a></li>
+                            <li><a href="catalog.html?category=custom-designs">Custom Designs</a></li>
+                            <li><a href="catalog.html?category=business">Business Murals</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Product Hero -->
+    <section class="product-hero">
+        <div class="container">
+            <nav class="breadcrumb">
+                <a href="index.html">Home</a>
+                <i class="fas fa-chevron-right"></i>
+                <a href="catalog.html">Catalog</a>
+                <i class="fas fa-chevron-right"></i>
+                <span id="breadcrumbCategory">Wall Murals</span>
+                <i class="fas fa-chevron-right"></i>
+                <span id="breadcrumbProduct">Product</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Product Details -->
+    <main class="product-main">
+        <div class="product-container">
+            <!-- Product Gallery -->
+            <div class="product-gallery">
+                <div class="main-image" id="mainImage">
+                    <img src="" alt="" id="mainImageImg">
+                </div>
+                <div class="thumbnail-gallery" id="thumbnailGallery">
+                    <!-- Thumbnails will be generated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Product Details -->
+            <div class="product-details">
+                <div class="product-category" id="productCategory"></div>
+                <h1 class="product-title" id="productTitle"></h1>
+                <div class="product-price" id="productPrice"></div>
+
+                <div class="product-rating">
+                    <div class="stars">
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                    </div>
+                    <span class="rating-text">(4.9) 127 reviews</span>
+                </div>
+
+                <div class="product-description" id="productDescription"></div>
+
+                <div class="product-options">
+                    <div class="option-group">
+                        <label class="option-label">Size/Variant:</label>
+                        <div class="variant-options" id="variantOptions">
+                            <!-- Variants will be generated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="quantity-selector">
+                        <label class="option-label">Quantity:</label>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" id="decreaseQty">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <input type="number" class="quantity-input" id="quantityInput" value="1" min="1" max="10">
+                            <button class="quantity-btn" id="increaseQty">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="add-to-cart-section">
+                    <button class="btn-add-to-cart" id="addToCartBtn">
+                        <i class="fas fa-shopping-cart"></i>
+                        Add to Cart
+                    </button>
+                    <button class="btn-wishlist" id="wishlistBtn" title="Add to Wishlist">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                </div>
+
+                <div class="product-features">
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> High-quality materials</li>
+                        <li><i class="fas fa-check"></i> Professional installation available</li>
+                        <li><i class="fas fa-check"></i> 30-day satisfaction guarantee</li>
+                        <li><i class="fas fa-check"></i> Custom sizing options</li>
+                        <li><i class="fas fa-check"></i> Fast shipping nationwide</li>
+                    </ul>
+                </div>
+
+                <div class="shipping-info">
+                    <strong><i class="fas fa-truck"></i> Free Shipping</strong> on orders over $200
+                    <br>
+                    <small>Estimated delivery: 5-7 business days</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Tabs -->
+        <div class="container">
+            <div class="product-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-button active" data-tab="description">Description</button>
+                    <button class="tab-button" data-tab="specifications">Specifications</button>
+                    <button class="tab-button" data-tab="installation">Installation</button>
+                    <button class="tab-button" data-tab="reviews">Reviews</button>
+                </div>
+
+                <div class="tab-content active" id="description">
+                    <h3>Product Description</h3>
+                    <p>Transform your space with our premium wall murals and artwork. Each piece is carefully crafted using high-quality materials and cutting-edge printing technology to ensure vibrant colors and lasting durability.</p>
+                    <p>Our designs are perfect for residential and commercial spaces, offering a unique way to express your style and create an impressive focal point in any room.</p>
+                    <h4>Key Features:</h4>
+                    <ul>
+                        <li>Premium vinyl or canvas materials</li>
+                        <li>Fade-resistant inks</li>
+                        <li>Easy application process</li>
+                        <li>Removable without damage</li>
+                        <li>Custom sizing available</li>
+                    </ul>
+                </div>
+
+                <div class="tab-content" id="specifications">
+                    <h3>Technical Specifications</h3>
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <tr style="border-bottom: 1px solid #ddd;">
+                            <td style="padding: 0.5rem; font-weight: 600;">Material</td>
+                            <td style="padding: 0.5rem;">Premium vinyl with matte finish</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #ddd;">
+                            <td style="padding: 0.5rem; font-weight: 600;">Thickness</td>
+                            <td style="padding: 0.5rem;">0.1mm (4 mil)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #ddd;">
+                            <td style="padding: 0.5rem; font-weight: 600;">Adhesive</td>
+                            <td style="padding: 0.5rem;">Removable, repositionable</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #ddd;">
+                            <td style="padding: 0.5rem; font-weight: 600;">Print Quality</td>
+                            <td style="padding: 0.5rem;">1440 DPI eco-solvent printing</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #ddd;">
+                            <td style="padding: 0.5rem; font-weight: 600;">Durability</td>
+                            <td style="padding: 0.5rem;">5+ years indoor use</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="tab-content" id="installation">
+                    <h3>Installation Guide</h3>
+                    <p>Installing your mural is straightforward with our easy-to-follow process:</p>
+                    <ol>
+                        <li><strong>Surface Preparation:</strong> Clean the wall surface with a mild detergent and allow to dry completely.</li>
+                        <li><strong>Positioning:</strong> Use the included grid lines to position your mural accurately.</li>
+                        <li><strong>Application:</strong> Remove the backing paper gradually while smoothing the mural onto the wall.</li>
+                        <li><strong>Finishing:</strong> Use the provided smoothing tool to eliminate air bubbles.</li>
+                    </ol>
+                    <p><strong>Professional Installation Available:</strong> Contact us for professional installation services in your area.</p>
+                </div>
+
+                <div class="tab-content" id="reviews">
+                    <h3>Customer Reviews</h3>
+                    <div style="margin-bottom: 2rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <strong>4.9/5</strong>
+                            <div class="stars">
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                            </div>
+                            <span>Based on 127 reviews</span>
+                        </div>
+                    </div>
+
+                    <div style="border-bottom: 1px solid #ddd; padding-bottom: 1rem; margin-bottom: 1rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <strong>Sarah M.</strong>
+                            <div class="stars">
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                            </div>
+                        </div>
+                        <p>"Absolutely love this mural! The quality is outstanding and it was easier to install than I expected. Really transformed our living room."</p>
+                    </div>
+
+                    <div style="border-bottom: 1px solid #ddd; padding-bottom: 1rem; margin-bottom: 1rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <strong>Mike R.</strong>
+                            <div class="stars">
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                            </div>
+                        </div>
+                        <p>"Professional quality and excellent customer service. The mural arrived quickly and looks exactly as pictured. Highly recommend!"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Products -->
+        <section class="related-products">
+            <div class="container">
+                <h3>You Might Also Like</h3>
+                <div class="related-grid" id="relatedProducts">
+                    <!-- Related products will be loaded by JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>D2R Murals</h4>
+                    <p>Professional wall murals and custom artwork for homes and businesses.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="catalog.html">Catalog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="shipping.html">Shipping Info</a></li>
+                        <li><a href="returns.html">Returns</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> info@d2rmurals.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Art Street, Design City, DC 12345</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 D2R Murals. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="close-cart" id="closeCart"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be loaded here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <strong>Total: $<span id="cartTotal">0.00</span></strong>
+            </div>
+            <div class="cart-actions">
+                <a href="cart.html" class="btn btn-outline btn-full">View Cart</a>
+                <a href="checkout.html" class="btn btn-primary btn-full">Checkout</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Login/Register Modal -->
+    <div class="modal" id="authModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="authModalTitle">Login</h3>
+                <button class="close-modal" id="closeAuthModal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" data-tab="login">Login</button>
+                    <button class="auth-tab" data-tab="register">Register</button>
+                </div>
+
+                <form class="auth-form" id="loginForm">
+                    <div class="form-group">
+                        <input type="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Login</button>
+                </form>
+
+                <form class="auth-form hidden" id="registerForm">
+                    <div class="form-group">
+                        <input type="text" placeholder="First Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Last Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Confirm Password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="product.js"></script>
+</body>
+</html>
