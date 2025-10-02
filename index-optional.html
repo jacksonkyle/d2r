@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D2R Murals - Premium Wall Art & Custom Designs</title>
+    <meta name="description" content="Professional wall murals and custom artwork for homes and businesses. Transform your space with stunning, high-quality designs.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="contact-info">
+                    <span><i class="fas fa-phone"></i> (555) 123-4567</span>
+                    <span><i class="fas fa-envelope"></i> info@d2rmurals.com</span>
+                </div>
+                <div class="header-actions">
+                    <a href="#" class="account-link" id="accountLink">
+                        <i class="fas fa-user"></i> Account
+                    </a>
+                    <a href="#" class="cart-link" id="cartToggle">
+                        <i class="fas fa-shopping-cart"></i> Cart (<span id="cartCount">0</span>)
+                    </a>
+                </div>
+            </div>
+
+            <div class="header-main">
+                <div class="logo">
+                    <h1><a href="index.html">D2R Murals</a></h1>
+                    <p>Premium Wall Art & Custom Designs</p>
+                </div>
+
+                <div class="search-bar">
+                    <form class="search-form" id="searchForm">
+                        <input type="text" id="searchInput" placeholder="Search for murals, artwork, designs..." autocomplete="off">
+                        <button type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+                    <div class="search-suggestions" id="searchSuggestions"></div>
+                </div>
+            </div>
+
+            <nav class="main-nav">
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li class="dropdown">
+                        <a href="catalog.html">Catalog <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="catalog.html?category=footwear">Footwear</a></li>
+                            <li><a href="catalog.html?category=apparel">Apparel</a></li>
+                            <li><a href="catalog.html?category=accessories">Accessories</a></li>
+                            <li><a href="catalog.html?category=wall-murals">Wall Murals</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Transform Your Space</h2>
+            <p>Professional wall murals and custom D2R branded merchandise</p>
+            <div class="hero-buttons">
+                <a href="catalog.html" class="btn btn-primary">Shop Now</a>
+                <a href="contact.html" class="btn btn-secondary">Custom Quote</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" alt="Beautiful wall mural">
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured-products">
+        <div class="container">
+            <h2>Featured Products</h2>
+            <div class="products-grid" id="featuredProducts">
+                <!-- Products will be loaded by JavaScript -->
+            </div>
+            <div class="text-center">
+                <a href="catalog.html" class="btn btn-outline">View All Products</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories">
+        <div class="container">
+            <h2>Shop by Category</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <img src="Images/Catalog/Black D2R Clogs.png" alt="D2R Footwear">
+                    <div class="category-content">
+                        <h3>Footwear</h3>
+                        <p>Comfortable and stylish shoes with D2R branding</p>
+                        <a href="catalog.html?category=footwear" class="btn btn-primary">Shop Now</a>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <img src="Images/Catalog/Black D2R Shirt.png" alt="D2R Apparel">
+                    <div class="category-content">
+                        <h3>Apparel</h3>
+                        <p>Premium clothing featuring the D2R logo</p>
+                        <a href="catalog.html?category=apparel" class="btn btn-primary">Shop Now</a>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <img src="Images/Catalog/Black D2R Phone Case (1).png" alt="D2R Accessories">
+                    <div class="category-content">
+                        <h3>Accessories</h3>
+                        <p>Stylish accessories to complete your D2R look</p>
+                        <a href="catalog.html?category=accessories" class="btn btn-primary">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h3>Stay Updated</h3>
+                <p>Get the latest designs and exclusive offers delivered to your inbox</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>D2R Murals</h4>
+                    <p>Professional wall murals and custom D2R branded merchandise.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="catalog.html">Catalog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="shipping.html">Shipping Info</a></li>
+                        <li><a href="returns.html">Returns</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> info@d2rmurals.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Art Street, Design City, DC 12345</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 D2R Murals. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="close-cart" id="closeCart"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be loaded here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <strong>Total: $<span id="cartTotal">0.00</span></strong>
+            </div>
+            <div class="cart-actions">
+                <a href="cart.html" class="btn btn-outline btn-full">View Cart</a>
+                <a href="checkout.html" class="btn btn-primary btn-full">Checkout</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Login/Register Modal -->
+    <div class="modal" id="authModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="authModalTitle">Login</h3>
+                <button class="close-modal" id="closeAuthModal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" data-tab="login">Login</button>
+                    <button class="auth-tab" data-tab="register">Register</button>
+                </div>
+
+                <form class="auth-form" id="loginForm">
+                    <div class="form-group">
+                        <input type="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Login</button>
+                </form>
+
+                <form class="auth-form hidden" id="registerForm">
+                    <div class="form-group">
+                        <input type="text" placeholder="First Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Last Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Confirm Password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
