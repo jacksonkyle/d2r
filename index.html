@@ -59,25 +59,39 @@
             right: 20px;
             cursor: pointer;
             z-index: 1001;
+            width: 40px;
+            height: 40px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 10px;
             background: transparent;
         }
 
         .hamburger span {
             display: block;
-            width: 30px;
+            width: 28px;
             height: 3px;
             background: #fff;
-            margin: 6px 0;
+            position: absolute;
             transition: all 0.3s ease;
         }
 
+        .hamburger span:nth-child(1) {
+            top: 10px;
+        }
+
+        .hamburger span:nth-child(2) {
+            top: 18.5px;
+        }
+
+        .hamburger span:nth-child(3) {
+            top: 27px;
+        }
+
         .hamburger.active span:nth-child(1) {
-            transform: translateY(9px) rotate(45deg);
+            top: 18.5px;
+            transform: rotate(45deg);
         }
 
         .hamburger.active span:nth-child(2) {
@@ -85,7 +99,8 @@
         }
 
         .hamburger.active span:nth-child(3) {
-            transform: translateY(-9px) rotate(-45deg);
+            top: 18.5px;
+            transform: rotate(-45deg);
         }
 
         .nav-menu {
@@ -1360,12 +1375,7 @@
         </div>
         <nav class="nav-menu" id="navMenu">
             <a href="#portfolio">Portfolio</a>
-            <a href="#auction">Auction Site</a>
             <a href="#about">About Artist</a>
-            <a href="#subscribe">Subscribe</a>
-            <a href="#faq">FAQ</a>
-            <a href="#shop">Art Shop</a>
-            <a href="#coming">Coming Soon</a>
         </nav>
     </header>
 
