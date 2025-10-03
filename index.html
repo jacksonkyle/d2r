@@ -420,7 +420,7 @@
             gap: 15px;
         }
 
-        .instagram-icon {
+        .icon {
             width: 35px;
             height: 35px;
             border-radius: 8px;
@@ -946,7 +946,7 @@
                 margin: 25px 0;
             }
 
-            .instagram-icon {
+            .icon {
                 width: 30px;
                 height: 30px;
             }
@@ -1100,7 +1100,7 @@
                 word-break: break-word;
             }
 
-            .instagram-icon {
+            .icon {
                 width: 28px;
                 height: 28px;
             }
@@ -1386,22 +1386,22 @@
             
             <div class="signature-gallery">
                 <div class="signature-image" onclick="openModal('Images/Murals/College Park Earth.jpg', 'hero')">
-                    <img src="Images/Murals/College Park Earth.jpg" alt="College Park Earth">
+                    <img src="Images/Murals/College Park Earth.jpg" alt="College Park Earth" fetchpriority="high">
                 </div>
                 <div class="signature-image" onclick="openModal('Images/Murals/Custom Project Sandbridge VA.jpg', 'hero')">
-                    <img src="Images/Murals/Custom Project Sandbridge VA.jpg" alt="Custom Project Sandbridge VA">
+                    <img src="Images/Murals/Custom Project Sandbridge VA.jpg" alt="Custom Project Sandbridge VA" fetchpriority="high">
                 </div>
                 <div class="signature-image" onclick="openModal('Images/Murals/Custom Project US Flag.jpg', 'hero')">
-                    <img src="Images/Murals/Custom Project US Flag.jpg" alt="Custom Project US Flag">
+                    <img src="Images/Murals/Custom Project US Flag.jpg" alt="Custom Project US Flag" fetchpriority="high">
                 </div>
                 <div class="signature-image" onclick="openModal('Images/Murals/Landstown Dolphin (1).jpg', 'hero')">
-                    <img src="Images/Murals/Landstown Dolphin (1).jpg" alt="Landstown Dolphin 1">
+                    <img src="Images/Murals/Landstown Dolphin (1).jpg" alt="Landstown Dolphin 1" loading="lazy">
                 </div>
                 <div class="signature-image" onclick="openModal('Images/Murals/Norfolk Children\'s Museum.jpg', 'hero')">
-                    <img src="Images/Murals/Norfolk Children's Museum.jpg" alt="Norfolk Children's Museum">
+                    <img src="Images/Murals/Norfolk Children's Museum.jpg" alt="Norfolk Children's Museum" loading="lazy">
                 </div>
                 <div class="signature-image" onclick="openModal('Images/Murals/Ocean Front Painting.jpg', 'hero')">
-                    <img src="Images/Murals/Ocean Front Painting.jpg" alt="Ocean Front Painting">
+                    <img src="Images/Murals/Ocean Front Painting.jpg" alt="Ocean Front Painting" loading="lazy">
                 </div>
             </div>
         </section>
@@ -1410,7 +1410,7 @@
             <div class="container">
                 <div class="about-content">
                     <div class="about-image">
-                        <img src="Images/Bio Homepage Material/Mathew Jackson.JPG" alt="Matthew Jackson">
+                        <img src="Images/Bio Homepage Material/Mathew Jackson.JPG" alt="Matthew Jackson" loading="lazy">
                     </div>
                     <div class="about-text">
                         <h2>About Matthew Jackson</h2>
@@ -1564,8 +1564,14 @@
                     </div>
                     <div class="contact-item">
                         <div class="instagram-container">
-                            <img src="Images/instagram.png" alt="Instagram" class="instagram-icon">
-                            <strong>Instagram:</strong> <a href="https://instagram.com/d2r_matt_jackson_">@d2r_matt_jackson_</a>
+                            <img src="Images/instagram.png" alt="Instagram" class="icon">
+                            <strong>Instagram:</strong> <a href="https://www.instagram.com/d2r_matt_jackson_/">@d2r_matt_jackson_</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="instagram-container">
+                            <img src="Images/tiktok.png" alt="TikTok" class="icon">
+                            <strong>TikTok:</strong> <a href="https://www.tiktok.com/@matthewjackson590">@matthewjackson590</a>
                         </div>
                     </div>
                     <div class="coverage-area">
@@ -1905,8 +1911,17 @@
             });
         });
 
-        // Add loading animation for images
+        // Add loading animation and lazy loading for images
         document.addEventListener('DOMContentLoaded', function() {
+            // Add lazy loading to all portfolio gallery images
+            const portfolioImages = document.querySelectorAll('.category-images img');
+            portfolioImages.forEach(img => {
+                if (!img.hasAttribute('loading')) {
+                    img.setAttribute('loading', 'lazy');
+                }
+            });
+
+            // Fade in images as they load
             const images = document.querySelectorAll('img');
             images.forEach(img => {
                 img.addEventListener('load', function() {
