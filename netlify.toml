@@ -2,7 +2,25 @@
   publish = "."
   command = ""
 
+# Cache static images aggressively
+[[headers]]
+  for = "/Images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/styles.css"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/script.js"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+# Unknown paths return a real 404 (proper SEO behavior, not soft-404).
+# Static files (catalog.html, robots.txt, sitemap.xml, etc.) match before this rule.
 [[redirects]]
   from = "/*"
-  to = "/index.html"
-  status = 200
+  to = "/404.html"
+  status = 404
