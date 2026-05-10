@@ -9,7 +9,7 @@ const products = [
         id: 1,
         title: "Black D2R Clogs",
         price: 89.99,
-        image: "Images/Catalog/Black D2R Clogs.png",
+        image: "Images/Catalog/Black D2R Clogs.webp",
         category: "footwear",
         description: "Comfortable and stylish black clogs featuring the D2R logo. Perfect for everyday wear with superior comfort and durability.",
         variants: ["Size 6", "Size 7", "Size 8", "Size 9", "Size 10", "Size 11", "Size 12"]
@@ -18,7 +18,7 @@ const products = [
         id: 2,
         title: "Black D2R Converse",
         price: 129.99,
-        image: "Images/Catalog/Black D2R Converse.png",
+        image: "Images/Catalog/Black D2R Converse.webp",
         category: "footwear",
         description: "Classic black Converse sneakers with custom D2R branding. Timeless style meets modern comfort for the perfect everyday shoe.",
         variants: ["Size 6", "Size 7", "Size 8", "Size 9", "Size 10", "Size 11", "Size 12"]
@@ -27,7 +27,7 @@ const products = [
         id: 3,
         title: "Black D2R Phone Case - Design 1",
         price: 24.99,
-        image: "Images/Catalog/Black D2R Phone Case (1).png",
+        image: "Images/Catalog/Black D2R Phone Case (1).webp",
         category: "accessories",
         description: "Premium black phone case featuring sleek D2R design. Provides excellent protection while showcasing your style.",
         variants: ["iPhone 13", "iPhone 14", "iPhone 15", "Samsung Galaxy S23", "Samsung Galaxy S24"]
@@ -36,7 +36,7 @@ const products = [
         id: 4,
         title: "Black D2R Phone Case - Design 2",
         price: 24.99,
-        image: "Images/Catalog/Black D2R Phone Case (2).png",
+        image: "Images/Catalog/Black D2R Phone Case (2).webp",
         category: "accessories",
         description: "Alternative black phone case design with distinctive D2R branding. Durable protection with premium materials.",
         variants: ["iPhone 13", "iPhone 14", "iPhone 15", "Samsung Galaxy S23", "Samsung Galaxy S24"]
@@ -45,7 +45,7 @@ const products = [
         id: 5,
         title: "Black D2R Shirt",
         price: 39.99,
-        image: "Images/Catalog/Black D2R Shirt.png",
+        image: "Images/Catalog/Black D2R Shirt.webp",
         category: "apparel",
         description: "Premium black t-shirt featuring the D2R logo. Made from high-quality cotton blend for maximum comfort and style.",
         variants: ["Small", "Medium", "Large", "X-Large", "XX-Large"]
