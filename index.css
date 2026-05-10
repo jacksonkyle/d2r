@@ -10,8 +10,8 @@ body {
     color: #fff;
     line-height: 1.6;
     overflow-x: hidden;
-    background-image: -webkit-image-set(url('Images/logo.webp') type('image/webp'), url('Images/logo.jpg') type('image/jpeg'));
-    background-image: image-set(url('Images/logo.webp') type('image/webp'), url('Images/logo.jpg') type('image/jpeg'));
+    background-image: -webkit-image-set(url('Images/logo.avif') type('image/avif'), url('Images/logo.webp') type('image/webp'), url('Images/logo.jpg') type('image/jpeg'));
+    background-image: image-set(url('Images/logo.avif') type('image/avif'), url('Images/logo.webp') type('image/webp'), url('Images/logo.jpg') type('image/jpeg'));
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -1832,4 +1832,68 @@ button:focus-visible,
     .process-grid { gap: 16px; }
     .process-step { padding: 28px 22px 22px; }
     .process-num { font-size: 2.4rem; }
+}
+
+/* ========== Stats banner (animated counters) ========== */
+.stats-banner {
+    padding: 70px 20px;
+    background: linear-gradient(135deg, rgba(0, 204, 255, 0.08), rgba(255, 0, 204, 0.08));
+    border-top: 1px solid rgba(0, 204, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 0, 204, 0.2);
+    backdrop-filter: blur(8px);
+    position: relative;
+}
+
+.stats-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 24px;
+    text-align: center;
+}
+
+.stat {
+    padding: 12px;
+}
+
+.stat-num,
+.stat-suffix {
+    display: inline-block;
+    font-size: clamp(2.6rem, 6vw, 4.2rem);
+    font-weight: 800;
+    line-height: 1;
+    background: linear-gradient(45deg, #00ccff, #ff00cc, #00ff88);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: gradientShift 5s ease-in-out infinite;
+    font-variant-numeric: tabular-nums;
+}
+
+.stat-suffix {
+    margin-left: 2px;
+}
+
+.stat-label {
+    display: block;
+    margin-top: 8px;
+    color: #ddd;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+}
+
+@media (max-width: 600px) {
+    .stats-banner { padding: 50px 18px; }
+    .stats-grid { gap: 16px; }
+}
+
+/* Respect users who don't want motion: skip the count-up but keep the static numbers */
+@media (prefers-reduced-motion: reduce) {
+    .stat-num, .stat-suffix { animation: none; }
 }

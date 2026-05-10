@@ -56,5 +56,39 @@
                 observer.observe(contactSection);
             }
         }
+
+        // --- Animated stat counters ---
+        const counters = document.querySelectorAll('.stat-num[data-count]');
+        if (counters.length && 'IntersectionObserver' in window) {
+            const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const animateCount = function (el) {
+                const target = parseInt(el.getAttribute('data-count'), 10) || 0;
+                if (reduceMotion) {
+                    el.textContent = String(target);
+                    return;
+                }
+                const duration = 1400;
+                const start = performance.now();
+                const tick = function (now) {
+                    const t = Math.min(1, (now - start) / duration);
+                    const eased = 1 - Math.pow(1 - t, 3); // easeOutCubic
+                    el.textContent = String(Math.round(target * eased));
+                    if (t < 1) requestAnimationFrame(tick);
+                };
+                requestAnimationFrame(tick);
+            };
+            const obs = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) {
+                    if (e.isIntersecting) {
+                        animateCount(e.target);
+                        obs.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.4 });
+            counters.forEach(function (c) {
+                c.textContent = '0';
+                obs.observe(c);
+            });
+        }
     });
 })();
