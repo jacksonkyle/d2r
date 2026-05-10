@@ -776,7 +776,9 @@
                 <strong>Total: $<span id="cartTotal">0.00</span></strong>
             </div>
             <div class="cart-actions">
-                <a href="checkout.html" class="btn btn-primary btn-full">Submit Order Inquiry</a>
+                <button type="button" class="btn btn-primary btn-full" data-stripe-checkout onclick="startStripeCheckout()">
+                    <i class="fas fa-lock"></i> Checkout with Stripe
+                </button>
             </div>
         </div>
     </div>

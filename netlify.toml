@@ -2,6 +2,10 @@
   publish = "."
   command = ""
 
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
 # ---------- Caching ----------
 # Images are content-addressed (filename = content); cache forever.
 [[headers]]

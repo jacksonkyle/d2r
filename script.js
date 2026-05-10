@@ -576,14 +576,14 @@ function logout() {
     showNotification('Successfully logged out!');
 }
 
-function showNotification(message) {
+function showNotification(message, type = 'success') {
     const notification = document.createElement('div');
     notification.textContent = message;
     notification.style.cssText = `
         position: fixed;
         top: 100px;
         right: 20px;
-        background: #27ae60;
+        background: ${type === 'error' ? '#e74c3c' : '#27ae60'};
         color: white;
         padding: 1rem 1.5rem;
         border-radius: 5px;
@@ -634,6 +634,49 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
+// Stripe Checkout: send the cart to a Netlify function that creates a
+// Checkout Session, then redirect the browser to Stripe's hosted page.
+async function startStripeCheckout() {
+    if (!Array.isArray(cart) || cart.length === 0) {
+        showNotification('Your cart is empty.', 'error');
+        return;
+    }
+
+    const buttons = document.querySelectorAll('[data-stripe-checkout]');
+    buttons.forEach(btn => {
+        btn.dataset.origLabel = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Redirecting…';
+        btn.disabled = true;
+    });
+
+    try {
+        const response = await fetch('/.netlify/functions/create-checkout-session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                items: cart.map(item => ({
+                    id: item.id,
+                    quantity: item.quantity,
+                    variant: item.variant
+                }))
+            })
+        });
+
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok || !data.url) {
+            throw new Error(data.error || 'Checkout failed');
+        }
+
+        window.location.assign(data.url);
+    } catch (err) {
+        buttons.forEach(btn => {
+            btn.innerHTML = btn.dataset.origLabel || 'Checkout';
+            btn.disabled = false;
+        });
+        showNotification(err.message || 'Could not start checkout. Please try again.', 'error');
+    }
+}
+
 // Export functions for global access
 window.addToCart = addToCart;
 window.removeFromCart = removeFromCart;
@@ -642,3 +685,4 @@ window.navigateToProduct = navigateToProduct;
 window.getProductById = getProductById;
 window.getProductsByCategory = getProductsByCategory;
 window.searchProducts = searchProducts;
+window.startStripeCheckout = startStripeCheckout;

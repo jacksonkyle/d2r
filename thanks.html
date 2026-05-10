@@ -70,15 +70,33 @@
 
     <main id="main" class="thanks-wrap">
         <div class="thanks-card">
-            <h1>Thanks!</h1>
-            <p>Your quote request has been received.</p>
-            <p>Matthew will reply by email within 1-2 business days. If you need a faster answer, call <a href="tel:757-450-2884" style="color:#4ecdc4">757-450-2884</a>.</p>
+            <h1 id="thanksTitle">Thanks!</h1>
+            <p id="thanksLead">Your quote request has been received.</p>
+            <p id="thanksDetail">Matthew will reply by email within 1-2 business days. If you need a faster answer, call <a href="tel:757-450-2884" style="color:#4ecdc4">757-450-2884</a>.</p>
             <div class="thanks-actions">
                 <a href="/">Back to home</a>
-                <a href="/matthew_jackson_portfolio.html" class="outline">View portfolio</a>
+                <a href="/catalog.html" class="outline">Continue shopping</a>
             </div>
         </div>
     </main>
+    <script>
+        (function () {
+            var params = new URLSearchParams(window.location.search);
+            var sessionId = params.get('session_id');
+            if (!sessionId) return;
+
+            // Stripe redirected back after a successful payment — clear cart
+            // and update the page copy.
+            try { localStorage.removeItem('cart'); } catch (e) {}
+
+            var t = document.getElementById('thanksTitle');
+            var l = document.getElementById('thanksLead');
+            var d = document.getElementById('thanksDetail');
+            if (t) t.textContent = 'Payment received!';
+            if (l) l.textContent = 'Your order is confirmed.';
+            if (d) d.innerHTML = 'A receipt is on its way to your email. Matthew will follow up shortly with shipping details. Questions? Call <a href="tel:757-450-2884" style="color:#4ecdc4">757-450-2884</a>.';
+        })();
+    </script>
     <script src="polish.js" defer></script>
 </body>
 </html>
