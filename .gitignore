@@ -18,3 +18,7 @@ Thumbs.db
 
 # Netlify
 .netlify/
+
+# Node / serverless functions
+node_modules/
+package-lock.json

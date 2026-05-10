@@ -1,0 +1,9 @@
+{
+    "name": "d2r-functions",
+    "private": true,
+    "version": "0.0.0",
+    "description": "Netlify serverless functions for the Dreams2Reality storefront.",
+    "dependencies": {
+        "stripe": "^17.5.0"
+    }
+}
