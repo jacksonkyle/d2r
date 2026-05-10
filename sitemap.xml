@@ -74,6 +74,28 @@
     </image:image>
   </url>
   <url>
+    <loc>https://www.d2rmurals.com/virginia-beach-muralist.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://www.d2rmurals.com/Images/Murals/Custom%20Project%20Sandbridge%20VA.jpg</image:loc>
+      <image:caption>Custom mural in Sandbridge, Virginia Beach</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.d2rmurals.com/Images/Murals/Plaza%20Middle%20Planetarium.jpg</image:loc>
+      <image:caption>Plaza Middle School planetarium ceiling mural, Virginia Beach</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.d2rmurals.com/norfolk-muralist.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://www.d2rmurals.com/Images/Murals/Norfolk%20Children%27s%20Museum.jpg</image:loc>
+      <image:caption>Norfolk Children's Museum mural</image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://www.d2rmurals.com/matthew_jackson_portfolio.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
