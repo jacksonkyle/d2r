@@ -35,6 +35,7 @@
     </script>
 
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="theme.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         /* Product page specific styles */
@@ -433,6 +434,7 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="polish.css">
 </head>
 <body>
     <a href="#main" class="skip-link">Skip to content</a>
@@ -469,20 +471,14 @@
                 </div>
             </div>
 
-            <nav class="main-nav">
+            <nav class="main-nav" aria-label="Main navigation">
                 <ul class="nav-menu" id="navMenu">
                     <li><a href="index.html">Home</a></li>
-                    <li class="dropdown">
-                        <a href="catalog.html">Catalog <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="catalog.html?category=wall-murals">Wall Murals</a></li>
-                            <li><a href="catalog.html?category=canvas-art">Canvas Art</a></li>
-                            <li><a href="catalog.html?category=custom-designs">Custom Designs</a></li>
-                            <li><a href="catalog.html?category=business">Business Murals</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="murals.html">Murals</a></li>
+                    <li><a href="renovations.html">Renovations</a></li>
+                    <li><a href="custom-projects.html">Custom</a></li>
+                    <li><a href="catalog.html">Shop</a></li>
                     <li><a href="matthew_jackson_portfolio.html">Portfolio</a></li>
-                    <li><a href="index.html#about">About</a></li>
                     <li><a href="index.html#contact">Contact</a></li>
                 </ul>
                 <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-label="Toggle navigation menu" aria-controls="navMenu" aria-expanded="false">
@@ -825,5 +821,6 @@
 
     <script src="script.js"></script>
     <script src="product.js"></script>
+    <script src="polish.js" defer></script>
 </body>
 </html>
