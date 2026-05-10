@@ -46,18 +46,19 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
+    <a href="#main" class="skip-link">Skip to content</a>
     <div class="overlay"></div>
 
     <header>
         <picture><source srcset="Images/logo.webp" type="image/webp"><img loading="lazy" decoding="async" width="1600" height="1466" src="Images/logo.jpg" alt="Dreams2Reality Logo" class="header-logo"></picture>
-        <div class="hamburger" onclick="toggleMenu()">
+        <button class="hamburger" type="button" aria-label="Toggle navigation menu" aria-controls="navMenu" aria-expanded="false" onclick="toggleMenu()">
             <span></span>
             <span></span>
             <span></span>
-        </div>
+        </button>
         <nav class="nav-menu" id="navMenu">
             <a href="index.html">Home</a>
-            <a href="murals.html" class="active">Murals</a>
+            <a href="murals.html" class="active" aria-current="page">Murals</a>
             <a href="renovations.html">Renovations</a>
             <a href="custom-projects.html">Custom</a>
             <a href="catalog.html">Shop</a>
@@ -65,7 +66,7 @@
         </nav>
     </header>
 
-    <main>
+    <main id="main">
         <section class="hero-section" style="min-height:auto;padding:140px 20px 40px">
             <h1 class="hero-title">Custom Murals</h1>
             <p class="hero-subtitle">Hand-painted murals for schools, businesses, and homes</p>
@@ -137,8 +138,11 @@
         function toggleMenu() {
             const nav = document.getElementById('navMenu');
             const burger = document.querySelector('.hamburger');
-            nav.classList.toggle('active');
-            if (burger) burger.classList.toggle('active');
+            const isOpen = nav.classList.toggle('active');
+            if (burger) {
+                burger.classList.toggle('active', isOpen);
+                burger.setAttribute('aria-expanded', String(isOpen));
+            }
         }
     </script>
 </body>

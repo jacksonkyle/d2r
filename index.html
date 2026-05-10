@@ -85,15 +85,16 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
+    <a href="#main" class="skip-link">Skip to content</a>
     <div class="overlay"></div>
     
     <header>
         <picture><source srcset="Images/logo.webp" type="image/webp"><img loading="lazy" decoding="async" width="1600" height="1466" src="Images/logo.jpg" alt="Dreams2Reality Logo" class="header-logo"></picture>
-        <div class="hamburger" onclick="toggleMenu()">
+        <button class="hamburger" type="button" aria-label="Toggle navigation menu" aria-controls="navMenu" aria-expanded="false" onclick="toggleMenu()">
             <span></span>
             <span></span>
             <span></span>
-        </div>
+        </button>
         <nav class="nav-menu" id="navMenu">
             <a href="#portfolio">Portfolio</a>
             <a href="catalog.html">Shop</a>
@@ -102,7 +103,7 @@
         </nav>
     </header>
 
-    <main>
+    <main id="main">
         <section class="hero-section">
             <h1 class="hero-title">Dreams2Reality</h1>
             <p class="hero-subtitle">Matthew Jackson - Professional Artist</p>
@@ -306,7 +307,7 @@
                     </div>
                 </div>
 
-                <form name="quote-request" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="quote-form" id="quoteForm">
+                <form name="quote-request" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html" class="quote-form" id="quoteForm">
                     <h3 class="form-title">Request a Quote</h3>
                     <p class="form-subtitle">Tell Matthew about your project. He'll reply within 1-2 business days.</p>
 
@@ -445,8 +446,9 @@
         function toggleMenu() {
             const hamburger = document.querySelector('.hamburger');
             const navMenu = document.getElementById('navMenu');
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
+            const isOpen = navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active', isOpen);
+            hamburger.setAttribute('aria-expanded', String(isOpen));
         }
 
         function openModal(imageSrc, section = 'single') {
@@ -663,6 +665,7 @@
             if (!navMenu.contains(event.target) && !hamburger.contains(event.target)) {
                 navMenu.classList.remove('active');
                 hamburger.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
             }
         }
 
@@ -678,7 +681,9 @@
                 }
                 // Close mobile menu after clicking
                 document.getElementById('navMenu').classList.remove('active');
-                document.querySelector('.hamburger').classList.remove('active');
+                const hb = document.querySelector('.hamburger');
+                hb.classList.remove('active');
+                hb.setAttribute('aria-expanded', 'false');
             });
         });
 
