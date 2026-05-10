@@ -10,7 +10,8 @@ body {
     color: #fff;
     line-height: 1.6;
     overflow-x: hidden;
-    background-image: url('Images/logo.jpg');
+    background-image: -webkit-image-set(url('Images/logo.webp') type('image/webp'), url('Images/logo.jpg') type('image/jpeg'));
+    background-image: image-set(url('Images/logo.webp') type('image/webp'), url('Images/logo.jpg') type('image/jpeg'));
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
