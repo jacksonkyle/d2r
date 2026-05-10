@@ -289,7 +289,7 @@ function createListProductCard(product) {
     return `
         <div class="product-card" data-product-id="${product.id}">
             <div class="product-image">
-                <img src="${product.image}" alt="${product.title}">
+                <img src="${product.image}" alt="${product.title}" loading="lazy" decoding="async">
             </div>
             <div class="product-info">
                 <h3 class="product-title">${product.title}</h3>

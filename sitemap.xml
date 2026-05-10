@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://www.d2rmurals.com/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.d2rmurals.com/Images/Murals/College%20Park%20Earth.jpg</image:loc>
+      <image:caption>College Park Earth mural by Matthew Jackson</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.d2rmurals.com/Images/Murals/Custom%20Project%20Sandbridge%20VA.jpg</image:loc>
+      <image:caption>Custom Project Sandbridge VA</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.d2rmurals.com/Images/Murals/Custom%20Project%20US%20Flag.jpg</image:loc>
+      <image:caption>Custom Project US Flag mural</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.d2rmurals.com/Images/Murals/Norfolk%20Children%27s%20Museum.jpg</image:loc>
+      <image:caption>Norfolk Children's Museum mural</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.d2rmurals.com/Images/Murals/Ocean%20Front%20Painting.jpg</image:loc>
+      <image:caption>Ocean Front Painting</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.d2rmurals.com/murals.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.d2rmurals.com/Images/Murals/Aligator%20Pride.jpg</image:loc>
+      <image:caption>Alligator Pride school mural</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.d2rmurals.com/Images/Murals/Kingston%20Elementary%20Library.jpg</image:loc>
+      <image:caption>Kingston Elementary Library mural</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.d2rmurals.com/Images/Murals/Plaza%20Middle%20Planetarium.jpg</image:loc>
+      <image:caption>Plaza Middle Planetarium ceiling mural</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.d2rmurals.com/renovations.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.d2rmurals.com/Images/Renovations/Custom%20Bathroom%20Renovation.jpg</image:loc>
+      <image:caption>Custom bathroom renovation</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.d2rmurals.com/Images/Renovations/Custom%20Kitchen%20Renovation.jpg</image:loc>
+      <image:caption>Custom kitchen renovation</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.d2rmurals.com/Images/Renovations/Custom%20Fireplace%20Renovation.jpg</image:loc>
+      <image:caption>Custom fireplace renovation</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.d2rmurals.com/custom-projects.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.d2rmurals.com/Images/Custom%20Projects/Custom%20Project%20DBZ%20Skate%20Deck.jpg</image:loc>
+      <image:caption>Custom Dragon Ball Z skate deck</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.d2rmurals.com/Images/Custom%20Projects/School%20Bus%20Painting.jpg</image:loc>
+      <image:caption>Custom school bus painting</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.d2rmurals.com/virginia-beach-muralist.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://www.d2rmurals.com/Images/Murals/Custom%20Project%20Sandbridge%20VA.jpg</image:loc>
+      <image:caption>Custom mural in Sandbridge, Virginia Beach</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.d2rmurals.com/Images/Murals/Plaza%20Middle%20Planetarium.jpg</image:loc>
+      <image:caption>Plaza Middle School planetarium ceiling mural, Virginia Beach</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.d2rmurals.com/norfolk-muralist.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://www.d2rmurals.com/Images/Murals/Norfolk%20Children%27s%20Museum.jpg</image:loc>
+      <image:caption>Norfolk Children's Museum mural</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.d2rmurals.com/matthew_jackson_portfolio.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.d2rmurals.com/catalog.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.d2rmurals.com/product.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+</urlset>

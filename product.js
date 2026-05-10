@@ -104,7 +104,7 @@ function generateImageGallery() {
 
         const thumbnailsHTML = thumbnailImages.map((imageSrc, index) => `
             <div class="thumbnail ${index === 0 ? 'active' : ''}" data-image="${imageSrc}">
-                <img src="${imageSrc}" alt="${currentProduct.title} ${index + 1}">
+                <img src="${imageSrc}" alt="${currentProduct.title} ${index + 1}" loading="lazy" decoding="async">
             </div>
         `).join('');
 

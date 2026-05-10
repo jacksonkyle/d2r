@@ -336,24 +336,39 @@ function validateForm() {
 }
 
 function handleOrderSubmission(e) {
-    e.preventDefault();
-
-    // Validate form
+    // Validate form before letting Netlify Forms accept it
     if (!validateForm()) {
+        e.preventDefault();
         showNotification('Please fix the errors in the form before submitting.', 'error');
         return;
     }
 
-    // Show loading state
-    const submitBtn = document.getElementById('placeOrderBtn');
-    const originalText = submitBtn.innerHTML;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-    submitBtn.disabled = true;
+    // Populate hidden fields with cart contents + total so the artist's
+    // notification email contains the actual order details.
+    const cartHidden = document.getElementById('cartContentsHidden');
+    const totalHidden = document.getElementById('orderTotalHidden');
+    if (cartHidden && Array.isArray(cart) && cart.length) {
+        cartHidden.value = cart.map(function(item) {
+            const variant = item.variant ? ' (' + item.variant + ')' : '';
+            return item.quantity + 'x ' + item.title + variant + ' @ $' + Number(item.price).toFixed(2);
+        }).join('\n');
+    }
+    if (totalHidden) {
+        const subtotal = cart.reduce((s, i) => s + (i.price * i.quantity), 0);
+        const tax = subtotal * (typeof taxRate === 'number' ? taxRate : 0);
+        const ship = (typeof shippingCost === 'number' ? shippingCost : 0);
+        totalHidden.value = '$' + (subtotal + tax + ship).toFixed(2);
+    }
 
-    // Simulate order processing
-    setTimeout(() => {
-        processOrder();
-    }, 2000);
+    // Show submitting state — form continues to submit naturally to Netlify
+    const submitBtn = document.getElementById('placeOrderBtn');
+    if (submitBtn) {
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        submitBtn.disabled = true;
+    }
+
+    // Clear cart locally so a refresh after submit doesn't show old items
+    try { localStorage.removeItem('cart'); } catch (e2) {}
 }
 
 function processOrder() {

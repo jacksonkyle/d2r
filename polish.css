@@ -1,0 +1,238 @@
+/* ==========================================================================
+   polish.css — Site-wide UX polish: scroll-to-top, sticky quote CTA,
+   reduced-motion. Loaded on every public page after the page's main CSS.
+   ========================================================================== */
+
+/* --- Scroll to top button --- */
+.scroll-top {
+    position: fixed;
+    right: 20px;
+    bottom: 88px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #00ccff, #ff00cc);
+    color: #fff;
+    border: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    line-height: 1;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(8px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 950;
+}
+
+.scroll-top.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.scroll-top:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0, 204, 255, 0.4);
+}
+
+.scroll-top:focus-visible {
+    outline: 3px solid #4ecdc4;
+    outline-offset: 3px;
+}
+
+/* --- Sticky bottom Get a Quote CTA (mobile-first; hidden on the contact page) --- */
+.sticky-cta {
+    position: fixed;
+    left: 16px;
+    right: 76px;
+    bottom: 16px;
+    padding: 14px 18px;
+    background: linear-gradient(45deg, #00ccff, #ff00cc);
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 800;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 999px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    z-index: 940;
+    display: none;
+}
+
+.sticky-cta:hover {
+    transform: translateY(-2px);
+    color: #fff;
+}
+
+.sticky-cta:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 3px;
+}
+
+/* Show only on small screens; hide if the user is already on the contact section */
+@media (max-width: 768px) {
+    .sticky-cta {
+        display: block;
+    }
+    body.cta-hidden .sticky-cta {
+        display: none;
+    }
+}
+
+/* --- Reduced motion: kill animations and smooth scrolling for users who prefer it --- */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* ========== Unified site footer ========== */
+.site-footer {
+    background: rgba(0, 0, 0, 0.92);
+    color: #ddd;
+    padding: 60px 20px 24px;
+    margin-top: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 1;
+    font-family: 'Arial', sans-serif;
+}
+
+.site-footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.site-footer .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.site-footer h3 {
+    font-size: 1.6rem;
+    margin-bottom: 14px;
+    background: linear-gradient(45deg, #00ccff, #ff00cc, #00ff88);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.site-footer .footer-brand p {
+    color: #bbb;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 14px;
+}
+
+.site-footer h4 {
+    color: #00ccff;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid rgba(0, 204, 255, 0.25);
+    padding-bottom: 8px;
+}
+
+.site-footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.site-footer li {
+    padding: 4px 0;
+    color: #bbb;
+    font-size: 0.95rem;
+}
+
+.site-footer a {
+    color: #ddd;
+    text-decoration: none;
+    transition: color 0.15s;
+}
+
+.site-footer a:hover {
+    color: #4ecdc4;
+    text-decoration: underline;
+}
+
+.site-footer .footer-social {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
+.site-footer .footer-social a {
+    display: inline-block;
+    padding: 6px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
+    font-size: 0.9rem;
+    color: #ddd;
+}
+
+.site-footer .footer-social a:hover {
+    border-color: #4ecdc4;
+    background: rgba(78, 205, 196, 0.08);
+    color: #4ecdc4;
+    text-decoration: none;
+}
+
+.site-footer .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    color: #888;
+    font-size: 0.88rem;
+}
+
+.site-footer .footer-bottom p {
+    margin: 0;
+}
+
+@media (max-width: 900px) {
+    .site-footer .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 540px) {
+    .site-footer {
+        padding: 44px 18px 20px;
+    }
+    .site-footer .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 26px;
+    }
+    .site-footer .footer-bottom {
+        justify-content: center;
+        text-align: center;
+    }
+}

@@ -2,7 +2,96 @@
   publish = "."
   command = ""
 
+# ---------- Caching ----------
+# Images are content-addressed (filename = content); cache forever.
+[[headers]]
+  for = "/Images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/styles.css"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/index.css"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/theme.css"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/polish.css"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/script.js"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/polish.js"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/catalog.js"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/product.js"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/checkout.js"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+# ---------- Security headers (apply to every response) ----------
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # HTTPS enforcement — Netlify already serves HTTPS; this tells browsers to
+    # never accept HTTP again for this host.
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+
+    # Disallow framing (clickjacking protection).
+    X-Frame-Options = "DENY"
+
+    # Disable MIME-sniffing.
+    X-Content-Type-Options = "nosniff"
+
+    # Send only origin to other sites; full URL same-origin.
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+    # Lock down powerful browser features the site doesn't use.
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=(), browsing-topics=()"
+
+    # Cross-origin defaults — allow embeds (the site doesn't iframe sensitive
+    # things) while keeping isolation reasonable.
+    Cross-Origin-Opener-Policy = "same-origin-allow-popups"
+
+    # Content Security Policy
+    # - default to self
+    # - inline styles allowed (needed for inline critical CSS, JSON-LD-adjacent style attrs)
+    # - scripts: self + inline (existing inline handlers + small inline scripts)
+    # - images: self + data: + the FA CDN icons + the existing site itself
+    # - fonts: self + the FA CDN
+    # - form submissions: self + Netlify's form endpoint
+    # - frame-ancestors: none (matches X-Frame-Options DENY)
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com data:; img-src 'self' data: https://www.d2rmurals.com; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
+
+# ---------- Routing ----------
+# Unknown paths return a real 404 (proper SEO behavior, not soft-404).
+# Static files (catalog.html, robots.txt, sitemap.xml, etc.) match before this rule.
 [[redirects]]
   from = "/*"
-  to = "/index.html"
-  status = 200
+  to = "/404.html"
+  status = 404

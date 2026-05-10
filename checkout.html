@@ -3,10 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout - D2R Murals</title>
-    <meta name="description" content="Complete your order securely. Fast checkout process with multiple payment options and shipping methods.">
+    <title>Checkout | Dreams2Reality Murals</title>
+    <meta name="description" content="Complete your Dreams2Reality order securely with fast shipping options.">
+    <meta name="robots" content="noindex,nofollow">
+    <link rel="canonical" href="https://www.d2rmurals.com/checkout.html">
+
+    <link rel="icon" href="/Images/logo.jpg" type="image/jpeg">
+    <link rel="apple-touch-icon" href="/Images/logo.jpg">
+    <meta name="theme-color" content="#000000">
+
     <link rel="stylesheet" href="styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="theme.css">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"></noscript>
     <style>
         /* Checkout-specific styles */
         .checkout-header {
@@ -360,15 +370,17 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="polish.css">
 </head>
 <body>
+    <a href="#main" class="skip-link">Skip to content</a>
     <!-- Header -->
     <header class="header">
         <div class="container">
             <div class="header-top">
                 <div class="contact-info">
-                    <span><i class="fas fa-phone"></i> (555) 123-4567</span>
-                    <span><i class="fas fa-envelope"></i> info@d2rmurals.com</span>
+                    <span><i class="fas fa-phone"></i> <a href="tel:757-450-2884">757-450-2884</a></span>
+                    <span><i class="fas fa-envelope"></i> <a href="mailto:mattjd2r@yahoo.com">mattjd2r@yahoo.com</a></span>
                 </div>
                 <div class="header-actions">
                     <a href="#" class="account-link" id="accountLink">
@@ -386,6 +398,23 @@
                     <p>Premium Wall Art & Custom Designs</p>
                 </div>
             </div>
+
+            <nav class="main-nav" aria-label="Main navigation">
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="murals.html">Murals</a></li>
+                    <li><a href="renovations.html">Renovations</a></li>
+                    <li><a href="custom-projects.html">Custom</a></li>
+                    <li><a href="catalog.html">Shop</a></li>
+                    <li><a href="matthew_jackson_portfolio.html">Portfolio</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-label="Toggle navigation menu" aria-controls="navMenu" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
         </div>
     </header>
 
@@ -411,7 +440,7 @@
     </section>
 
     <!-- Checkout Main -->
-    <main class="checkout-main">
+    <main id="main" class="checkout-main">
         <div class="checkout-container" id="checkoutContainer">
             <!-- Empty cart message (hidden by default) -->
             <div class="empty-cart hidden" id="emptyCart">
@@ -421,9 +450,18 @@
                 <a href="catalog.html" class="btn btn-primary">Continue Shopping</a>
             </div>
 
+            <!-- Order inquiry notice -->
+            <div class="checkout-notice" role="note">
+                <strong>How orders work:</strong> Submit this form and Matthew will email you within 1-2 business days with payment options (Venmo, CashApp, check, or invoice) and shipping details. Nothing is charged through this site.
+            </div>
+
             <!-- Checkout Form -->
             <div class="checkout-form" id="checkoutForm">
-                <form id="orderForm">
+                <form id="orderForm" name="order-inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
+                    <input type="hidden" name="form-name" value="order-inquiry">
+                    <input type="hidden" name="cart-contents" id="cartContentsHidden" value="">
+                    <input type="hidden" name="order-total" id="orderTotalHidden" value="">
+                    <p class="hidden-field" style="position:absolute;left:-9999px"><label>Don't fill this out: <input name="bot-field"></label></p>
                     <!-- Contact Information -->
                     <div class="form-section">
                         <h2 class="section-title">
@@ -432,10 +470,10 @@
                         </h2>
                         <div class="form-group">
                             <label class="form-label" for="email">Email Address *</label>
-                            <input type="email" id="email" class="form-input" required placeholder="your@email.com">
+                            <input type="email" id="email" name="email" class="form-input" required placeholder="your@email.com">
                         </div>
                         <div class="checkbox-group">
-                            <input type="checkbox" id="newsletter">
+                            <input type="checkbox" id="newsletter" name="newsletter_optin">
                             <label for="newsletter">Subscribe to our newsletter for updates and exclusive offers</label>
                         </div>
                     </div>
@@ -449,29 +487,29 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label class="form-label" for="firstName">First Name *</label>
-                                <input type="text" id="firstName" class="form-input" required>
+                                <input type="text" id="firstName" name="first_name" class="form-input" required>
                             </div>
                             <div class="form-group">
                                 <label class="form-label" for="lastName">Last Name *</label>
-                                <input type="text" id="lastName" class="form-input" required>
+                                <input type="text" id="lastName" name="last_name" class="form-input" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="address">Address *</label>
-                            <input type="text" id="address" class="form-input" required placeholder="123 Main Street">
+                            <input type="text" id="address" name="address" class="form-input" required placeholder="123 Main Street">
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="apartment">Apartment, suite, etc. (optional)</label>
-                            <input type="text" id="apartment" class="form-input" placeholder="Apt 4B">
+                            <input type="text" id="apartment" name="apartment" class="form-input" placeholder="Apt 4B">
                         </div>
                         <div class="form-row">
                             <div class="form-group">
                                 <label class="form-label" for="city">City *</label>
-                                <input type="text" id="city" class="form-input" required>
+                                <input type="text" id="city" name="city" class="form-input" required>
                             </div>
                             <div class="form-group">
                                 <label class="form-label" for="state">State *</label>
-                                <select id="state" class="form-select" required>
+                                <select id="state" name="state" class="form-select" required>
                                     <option value="">Select State</option>
                                     <option value="AL">Alabama</option>
                                     <option value="CA">California</option>
@@ -485,11 +523,11 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label class="form-label" for="zipCode">ZIP Code *</label>
-                                <input type="text" id="zipCode" class="form-input" required pattern="[0-9]{5}(-[0-9]{4})?" placeholder="12345">
+                                <input type="text" id="zipCode" name="zip" class="form-input" required pattern="[0-9]{5}(-[0-9]{4})?" placeholder="12345">
                             </div>
                             <div class="form-group">
                                 <label class="form-label" for="phone">Phone Number</label>
-                                <input type="tel" id="phone" class="form-input" placeholder="(555) 123-4567">
+                                <input type="tel" id="phone" name="phone" class="form-input" placeholder="(555) 123-4567">
                             </div>
                         </div>
                     </div>
@@ -522,51 +560,26 @@
                         </div>
                     </div>
 
-                    <!-- Payment Information -->
+                    <!-- Preferred contact for payment arrangement -->
                     <div class="form-section">
                         <h2 class="section-title">
                             <i class="fas fa-credit-card"></i>
-                            Payment Information
+                            Payment Preference
                         </h2>
-                        <div class="payment-methods">
-                            <div class="payment-method selected" data-payment="card">
-                                <i class="fas fa-credit-card"></i>
-                                <div>Credit Card</div>
-                            </div>
-                            <div class="payment-method" data-payment="paypal">
-                                <i class="fab fa-paypal"></i>
-                                <div>PayPal</div>
-                            </div>
-                            <div class="payment-method" data-payment="apple">
-                                <i class="fab fa-apple-pay"></i>
-                                <div>Apple Pay</div>
-                            </div>
+                        <p style="margin:0 0 14px;color:#bbb;font-size:0.95rem">Pick how you'd like Matthew to arrange payment after he confirms your order:</p>
+                        <div class="form-group">
+                            <label class="form-label" for="paymentPreference">Preferred payment method</label>
+                            <select id="paymentPreference" name="payment_preference" class="form-select">
+                                <option value="Venmo">Venmo</option>
+                                <option value="CashApp">Cash App</option>
+                                <option value="Check">Check by mail</option>
+                                <option value="Invoice / bank transfer">Invoice / bank transfer</option>
+                                <option value="Other - I'll discuss">Other — discuss with Matthew</option>
+                            </select>
                         </div>
-
-                        <div id="cardPayment">
-                            <div class="form-group">
-                                <label class="form-label" for="cardNumber">Card Number *</label>
-                                <input type="text" id="cardNumber" class="form-input" required placeholder="1234 5678 9012 3456" maxlength="19">
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label class="form-label" for="expiry">Expiry Date *</label>
-                                    <input type="text" id="expiry" class="form-input" required placeholder="MM/YY" maxlength="5">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label" for="cvv">CVV *</label>
-                                    <input type="text" id="cvv" class="form-input" required placeholder="123" maxlength="4">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label" for="cardName">Name on Card *</label>
-                                <input type="text" id="cardName" class="form-input" required placeholder="John Doe">
-                            </div>
-                        </div>
-
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="billingAddress">
-                            <label for="billingAddress">Billing address is different from shipping address</label>
+                        <div class="form-group">
+                            <label class="form-label" for="orderNotes">Notes (optional)</label>
+                            <textarea id="orderNotes" name="notes" class="form-input" rows="3" placeholder="Anything Matthew should know about this order — sizing, deadline, gift, etc."></textarea>
                         </div>
                     </div>
                 </form>
@@ -597,52 +610,63 @@
                     </div>
                 </div>
                 <button type="submit" class="place-order-btn" id="placeOrderBtn" form="orderForm">
-                    <i class="fas fa-lock"></i>
-                    Complete Order
+                    <i class="fas fa-paper-plane"></i>
+                    Submit Order Inquiry
                 </button>
                 <div class="security-info">
                     <i class="fas fa-shield-alt"></i>
-                    <span>Your payment information is secure and encrypted</span>
+                    <span>No card details are taken on this site. Matthew confirms each order and arranges payment by your preferred method.</span>
                 </div>
             </div>
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="site-footer" role="contentinfo">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>D2R Murals</h4>
-                    <p>Professional wall murals and custom artwork for homes and businesses.</p>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Dreams2Reality</h3>
+                    <p>Custom murals, canvas art, sculpture painting, and creative renovations by Matthew Jackson — professional artist since 2002.</p>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/d2r_matt_jackson_/" rel="noopener">Instagram</a>
+                        <a href="https://www.tiktok.com/@matthewjackson590" rel="noopener">TikTok</a>
+                    </div>
                 </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
+                <nav class="footer-col" aria-label="Services">
+                    <h4>Services</h4>
                     <ul>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="catalog.html">Catalog</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="murals.html">Custom Murals</a></li>
+                        <li><a href="renovations.html">Renovations</a></li>
+                        <li><a href="custom-projects.html">Custom Projects</a></li>
+                        <li><a href="catalog.html">Shop</a></li>
+                        <li><a href="matthew_jackson_portfolio.html">Portfolio</a></li>
+                    </ul>
+                </nav>
+                <div class="footer-col">
+                    <h4>Areas Served</h4>
+                    <ul>
+                        <li><a href="virginia-beach-muralist.html">Virginia Beach, VA</a></li>
+                        <li><a href="norfolk-muralist.html">Norfolk, VA</a></li>
+                        <li>Chesapeake, VA</li>
+                        <li>Suffolk, VA</li>
+                        <li>Hampton Roads</li>
+                        <li>Out-of-state by arrangement</li>
                     </ul>
                 </div>
-                <div class="footer-section">
-                    <h4>Customer Service</h4>
+                <div class="footer-col">
+                    <h4>Contact</h4>
                     <ul>
-                        <li><a href="shipping.html">Shipping Info</a></li>
-                        <li><a href="returns.html">Returns</a></li>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="tel:757-450-2884">757-450-2884</a></li>
+                        <li><a href="mailto:mattjd2r@yahoo.com">mattjd2r@yahoo.com</a></li>
+                        <li><a href="index.html#contact">Request a Quote</a></li>
+                        <li><a href="index.html#faq">FAQ</a></li>
                     </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact Info</h4>
-                    <p><i class="fas fa-phone"></i> (555) 123-4567</p>
-                    <p><i class="fas fa-envelope"></i> info@d2rmurals.com</p>
-                    <p><i class="fas fa-map-marker-alt"></i> 123 Art Street, Design City, DC 12345</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 D2R Murals. All rights reserved.</p>
+                <p>&copy; 2025 Dreams2Reality / Matthew Jackson. All rights reserved.</p>
+                <p>Hand-painted in Virginia Beach since 2002.</p>
             </div>
         </div>
     </footer>
@@ -697,5 +721,6 @@
 
     <script src="script.js"></script>
     <script src="checkout.js"></script>
+    <script src="polish.js" defer></script>
 </body>
 </html>

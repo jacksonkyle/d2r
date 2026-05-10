@@ -1,0 +1,618 @@
+/* ==========================================================================
+   theme.css — Modern dark-theme overlay for catalog / product / checkout
+   Loads AFTER styles.css; selectively overrides the light e-commerce
+   defaults so the shop pages match the homepage / category pages.
+   ========================================================================== */
+
+/* --- Base body --- */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #000;
+    color: #fff;
+    line-height: 1.6;
+    overflow-x: hidden;
+    background-image: -webkit-image-set(url('Images/logo.avif') type('image/avif'), url('Images/logo.webp') type('image/webp'), url('Images/logo.jpg') type('image/jpeg'));
+    background-image: image-set(url('Images/logo.avif') type('image/avif'), url('Images/logo.webp') type('image/webp'), url('Images/logo.jpg') type('image/jpeg'));
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: -1;
+}
+
+/* --- Modern slide-out header (replaces .header / .header-top / .header-main / .main-nav) --- */
+header.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+    padding: 14px 20px;
+}
+
+header.header > .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 0;
+}
+
+/* Hide the cluttered top contact / account / cart bar — surface info elsewhere */
+.header-top {
+    display: none !important;
+}
+
+/* The original .header-main holds logo + search; restyle it */
+.header-main {
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 24px;
+    flex: 1;
+    padding: 0 !important;
+    background: transparent !important;
+}
+
+.logo h1 {
+    font-size: 1.4rem;
+    margin: 0;
+    background: linear-gradient(45deg, #00ccff, #ff00cc, #00ff88);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.logo h1 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.logo p {
+    display: none; /* "Premium Wall Art..." subtitle — drop for cleaner header */
+}
+
+/* Inline search bar tucked beside logo */
+.search-bar {
+    flex: 1;
+    max-width: 360px;
+    position: relative;
+}
+
+.search-form {
+    display: flex;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.search-form input {
+    flex: 1;
+    padding: 10px 14px;
+    background: transparent;
+    border: 0;
+    color: #fff;
+    font-size: 0.95rem;
+}
+
+.search-form input::placeholder {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.search-form button {
+    background: transparent;
+    color: #4ecdc4;
+    border: 0;
+    padding: 0 14px;
+    cursor: pointer;
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.search-suggestions {
+    background: rgba(20, 20, 20, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    backdrop-filter: blur(10px);
+}
+
+.search-suggestion {
+    color: #fff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.search-suggestion:hover {
+    background: rgba(0, 204, 255, 0.15);
+}
+
+/* Replace the inline ul-based nav with a slide-out drawer */
+.main-nav {
+    display: contents;
+}
+
+.nav-menu {
+    position: fixed !important;
+    top: 0;
+    right: -320px;
+    width: 320px;
+    max-width: 85vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.95) !important;
+    backdrop-filter: blur(15px);
+    transition: right 0.3s ease;
+    padding-top: 90px !important;
+    z-index: 999;
+    margin: 0;
+    flex-direction: column;
+    gap: 0;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.nav-menu.active {
+    right: 0;
+}
+
+.nav-menu > li {
+    width: 100%;
+    list-style: none;
+}
+
+.nav-menu > li > a {
+    display: block;
+    padding: 18px 30px !important;
+    font-size: 17px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fff !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: transparent !important;
+}
+
+.nav-menu > li > a:hover,
+.nav-menu > li > a.active {
+    background: linear-gradient(45deg, #00ccff, #ff00cc) !important;
+    color: #fff !important;
+    transform: translateX(8px);
+}
+
+.dropdown-menu {
+    position: static !important;
+    background: rgba(255, 255, 255, 0.04) !important;
+    box-shadow: none !important;
+    padding-left: 16px;
+    border-radius: 0;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.dropdown-menu li a {
+    color: #ccc !important;
+    padding: 12px 30px !important;
+    font-size: 14px;
+    text-transform: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.dropdown-menu li a:hover {
+    background: rgba(0, 204, 255, 0.18) !important;
+    color: #fff !important;
+}
+
+.dropdown > a i.fa-chevron-down {
+    display: none;
+}
+
+/* Replace the boxy mobile-menu-toggle with the same style hamburger as the rest of the site */
+.mobile-menu-toggle {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background: transparent !important;
+    border: 0 !important;
+    padding: 0 !important;
+    color: #fff !important;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1001;
+    margin-left: auto;
+}
+
+.mobile-menu-toggle span {
+    width: 28px !important;
+    height: 3px !important;
+    background: #fff !important;
+    margin: 0 !important;
+    position: absolute;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+.mobile-menu-toggle span:nth-child(1) { top: 10px; }
+.mobile-menu-toggle span:nth-child(2) { top: 18.5px; }
+.mobile-menu-toggle span:nth-child(3) { top: 27px; }
+
+.mobile-menu-toggle.active span:nth-child(1) { top: 18.5px; transform: rotate(45deg); }
+.mobile-menu-toggle.active span:nth-child(2) { opacity: 0; }
+.mobile-menu-toggle.active span:nth-child(3) { top: 18.5px; transform: rotate(-45deg); }
+
+/* --- Hero / page tops --- */
+.catalog-hero,
+.product-hero,
+.checkout-header {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)) !important;
+    color: #fff !important;
+    padding: 140px 20px 50px !important;
+    text-align: center;
+}
+
+.catalog-hero h1,
+.checkout-header h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    background: linear-gradient(45deg, #00ccff, #ff00cc, #00ff88);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.catalog-hero p,
+.checkout-header p {
+    color: #ccc !important;
+    font-size: 1.1rem;
+    margin-top: 8px;
+}
+
+main.catalog-main,
+main.product-main,
+main.checkout-main {
+    padding: 40px 0 80px !important;
+    background: transparent !important;
+}
+
+/* --- Filter sidebar / cards --- */
+.filter-section,
+.catalog-sidebar .filter-section,
+.product-info,
+.product-tabs,
+.cart-summary,
+.checkout-form,
+.order-summary {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    color: #fff !important;
+    backdrop-filter: blur(10px);
+    border-radius: 12px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+.filter-section h3,
+.product-info h1,
+.cart-summary h3,
+.order-summary h3 {
+    color: #00ccff !important;
+}
+
+.filter-group label,
+.checkbox-item label,
+.form-group label {
+    color: #ddd !important;
+}
+
+.checkbox-item input[type="checkbox"] {
+    accent-color: #4ecdc4;
+}
+
+.price-input,
+.sort-select,
+.form-group input,
+.form-group select,
+.form-group textarea {
+    background: rgba(0, 0, 0, 0.4) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: #fff !important;
+}
+
+.price-input::placeholder,
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.clear-filters {
+    background: linear-gradient(45deg, #ff6b6b, #ff00cc) !important;
+}
+
+/* --- Product cards (catalog grid + featured) --- */
+.product-card {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    color: #fff !important;
+    border-radius: 14px !important;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+    border-color: #00ccff !important;
+    box-shadow: 0 16px 40px rgba(0, 204, 255, 0.25) !important;
+}
+
+.product-image {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.product-title,
+.product-card .product-title {
+    color: #fff !important;
+}
+
+.product-description {
+    color: #ccc !important;
+}
+
+.product-price {
+    color: #4ecdc4 !important;
+    font-weight: 800;
+}
+
+.btn-add-cart {
+    background: linear-gradient(45deg, #00ccff, #ff00cc) !important;
+    color: #fff !important;
+    border: 0 !important;
+    font-weight: 700;
+}
+
+.btn-add-cart:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 0, 204, 0.4);
+}
+
+/* --- Buttons (general) --- */
+.btn,
+.btn-primary {
+    border: 0;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #00ccff, #ff00cc) !important;
+    color: #fff !important;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0, 204, 255, 0.35);
+}
+
+.btn-outline {
+    background: transparent !important;
+    border: 2px solid #4ecdc4 !important;
+    color: #4ecdc4 !important;
+}
+
+.btn-outline:hover {
+    background: #4ecdc4 !important;
+    color: #000 !important;
+}
+
+/* --- Pagination --- */
+.pagination button {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    color: #fff !important;
+}
+
+.pagination button.active {
+    background: linear-gradient(45deg, #00ccff, #ff00cc) !important;
+    border-color: transparent !important;
+}
+
+.pagination button:disabled {
+    opacity: 0.3;
+}
+
+.catalog-stats {
+    color: #aaa !important;
+}
+
+/* --- Product detail page --- */
+.product-gallery .main-image {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.thumbnail {
+    border: 2px solid rgba(255, 255, 255, 0.15) !important;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.thumbnail.active {
+    border-color: #00ccff !important;
+    box-shadow: 0 0 0 2px rgba(0, 204, 255, 0.4);
+}
+
+.tab-button {
+    color: #bbb !important;
+    background: transparent !important;
+    border: 0 !important;
+}
+
+.tab-button.active {
+    color: #00ccff !important;
+    border-bottom: 2px solid #00ccff !important;
+}
+
+.tab-content {
+    color: #ddd !important;
+}
+
+.breadcrumb {
+    color: #aaa;
+}
+
+.breadcrumb a {
+    color: #4ecdc4 !important;
+}
+
+/* --- Checkout --- */
+.checkout-container {
+    color: #fff;
+}
+
+.cart-items,
+.checkout-step {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 12px;
+    padding: 24px !important;
+}
+
+.cart-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #fff;
+}
+
+.cart-item-title {
+    color: #fff !important;
+}
+
+.cart-item-price {
+    color: #4ecdc4 !important;
+}
+
+.summary-row {
+    color: #ddd;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.summary-total {
+    color: #4ecdc4 !important;
+    font-weight: 800;
+}
+
+/* --- Footer --- */
+.footer {
+    background: rgba(0, 0, 0, 0.85) !important;
+    color: #ddd !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+}
+
+.footer a {
+    color: #4ecdc4 !important;
+}
+
+.footer-section h4 {
+    color: #00ccff !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    color: #aaa;
+}
+
+/* --- A11y skip-link must show above the dark header --- */
+.skip-link {
+    background: #4ecdc4 !important;
+    color: #000 !important;
+}
+
+/* --- Responsive: stack header on small screens --- */
+@media (max-width: 768px) {
+    header.header > .container {
+        flex-wrap: wrap;
+    }
+    .header-main {
+        order: 1;
+        flex-wrap: wrap;
+    }
+    .search-bar {
+        flex: 1 1 100%;
+        max-width: none;
+        margin-top: 8px;
+    }
+    .catalog-hero,
+    .product-hero,
+    .checkout-header {
+        padding: 110px 16px 36px !important;
+    }
+}
+
+/* --- Reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Checkout: order-inquiry notice banner */
+.checkout-notice {
+    max-width: 1200px;
+    margin: 0 auto 24px;
+    padding: 18px 24px;
+    background: rgba(78, 205, 196, 0.08);
+    border: 1px solid rgba(78, 205, 196, 0.4);
+    border-radius: 10px;
+    color: #ddd;
+    font-size: 0.98rem;
+    line-height: 1.6;
+}
+
+.checkout-notice strong {
+    color: #4ecdc4;
+}
+
+.security-info {
+    color: #aaa !important;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-top: 12px;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 6px;
+}
+
+.security-info i {
+    color: #4ecdc4;
+    margin-right: 6px;
+}

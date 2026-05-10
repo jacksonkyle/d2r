@@ -1,0 +1,20 @@
+# GIMP / image editor sources (use a separate assets repo for these)
+*.xcf
+*.XCF
+*.psd
+*.PSD
+
+# Scratch / untitled exports
+Untitled.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Netlify
+.netlify/

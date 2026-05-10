@@ -9,7 +9,7 @@ const products = [
         id: 1,
         title: "Black D2R Clogs",
         price: 89.99,
-        image: "Images/Catalog/Black D2R Clogs.png",
+        image: "Images/Catalog/Black D2R Clogs.webp",
         category: "footwear",
         description: "Comfortable and stylish black clogs featuring the D2R logo. Perfect for everyday wear with superior comfort and durability.",
         variants: ["Size 6", "Size 7", "Size 8", "Size 9", "Size 10", "Size 11", "Size 12"]
@@ -18,7 +18,7 @@ const products = [
         id: 2,
         title: "Black D2R Converse",
         price: 129.99,
-        image: "Images/Catalog/Black D2R Converse.png",
+        image: "Images/Catalog/Black D2R Converse.webp",
         category: "footwear",
         description: "Classic black Converse sneakers with custom D2R branding. Timeless style meets modern comfort for the perfect everyday shoe.",
         variants: ["Size 6", "Size 7", "Size 8", "Size 9", "Size 10", "Size 11", "Size 12"]
@@ -27,7 +27,7 @@ const products = [
         id: 3,
         title: "Black D2R Phone Case - Design 1",
         price: 24.99,
-        image: "Images/Catalog/Black D2R Phone Case (1).png",
+        image: "Images/Catalog/Black D2R Phone Case (1).webp",
         category: "accessories",
         description: "Premium black phone case featuring sleek D2R design. Provides excellent protection while showcasing your style.",
         variants: ["iPhone 13", "iPhone 14", "iPhone 15", "Samsung Galaxy S23", "Samsung Galaxy S24"]
@@ -36,7 +36,7 @@ const products = [
         id: 4,
         title: "Black D2R Phone Case - Design 2",
         price: 24.99,
-        image: "Images/Catalog/Black D2R Phone Case (2).png",
+        image: "Images/Catalog/Black D2R Phone Case (2).webp",
         category: "accessories",
         description: "Alternative black phone case design with distinctive D2R branding. Durable protection with premium materials.",
         variants: ["iPhone 13", "iPhone 14", "iPhone 15", "Samsung Galaxy S23", "Samsung Galaxy S24"]
@@ -45,7 +45,7 @@ const products = [
         id: 5,
         title: "Black D2R Shirt",
         price: 39.99,
-        image: "Images/Catalog/Black D2R Shirt.png",
+        image: "Images/Catalog/Black D2R Shirt.webp",
         category: "apparel",
         description: "Premium black t-shirt featuring the D2R logo. Made from high-quality cotton blend for maximum comfort and style.",
         variants: ["Small", "Medium", "Large", "X-Large", "XX-Large"]
@@ -54,7 +54,7 @@ const products = [
         id: 6,
         title: "Custom D2R Wall Mural",
         price: 299.99,
-        image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&h=300&fit=crop",
+        image: "Images/Murals/College Park Earth.webp",
         category: "wall-murals",
         description: "Custom D2R branded wall mural perfect for businesses, studios, or personal spaces. Professional installation available.",
         variants: ["Small (3x2ft)", "Medium (6x4ft)", "Large (9x6ft)", "Custom Size"]
@@ -76,13 +76,38 @@ function initializeApp() {
 
 // Event Listeners Setup
 function setupEventListeners() {
-    // Mobile menu toggle
+    // Mobile menu toggle (works as the only menu toggle now — nav is slide-out at all sizes)
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
     const navMenu = document.getElementById('navMenu');
 
     if (mobileMenuToggle && navMenu) {
         mobileMenuToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
+            const isOpen = navMenu.classList.toggle('active');
+            mobileMenuToggle.classList.toggle('active', isOpen);
+            mobileMenuToggle.setAttribute('aria-expanded', String(isOpen));
+        });
+        // Close when clicking a link or outside the panel
+        navMenu.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A') {
+                navMenu.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+        document.addEventListener('click', function(e) {
+            if (!navMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                navMenu.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                mobileMenuToggle.focus();
+            }
         });
     }
 
