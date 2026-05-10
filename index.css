@@ -1364,3 +1364,131 @@ footer p {
         background: linear-gradient(45deg, #00ccff, #ff00cc);
     }
 }
+
+/* ========== Quote request form ========== */
+.quote-form {
+    max-width: 640px;
+    margin: 50px auto 0;
+    padding: 32px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+}
+
+.form-title {
+    font-size: 1.75rem;
+    margin: 0 0 8px;
+    color: #fff;
+    text-align: center;
+}
+
+.form-subtitle {
+    margin: 0 0 24px;
+    color: #ccc;
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+.form-row {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-row label {
+    font-weight: 600;
+    color: #fff;
+    font-size: 0.95rem;
+}
+
+.form-row input,
+.form-row select,
+.form-row textarea {
+    width: 100%;
+    padding: 12px 14px;
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.form-row select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, #fff 50%), linear-gradient(135deg, #fff 50%, transparent 50%);
+    background-position: calc(100% - 18px) center, calc(100% - 13px) center;
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+    padding-right: 40px;
+}
+
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus {
+    outline: 2px solid #4ecdc4;
+    outline-offset: 2px;
+    border-color: transparent;
+}
+
+.form-row textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-submit {
+    width: 100%;
+    padding: 14px 20px;
+    background: linear-gradient(45deg, #00ccff, #ff00cc);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.15s, opacity 0.15s;
+}
+
+.form-submit:hover {
+    transform: translateY(-1px);
+    opacity: 0.95;
+}
+
+.form-submit:active {
+    transform: translateY(0);
+}
+
+.form-note {
+    margin: 16px 0 0;
+    text-align: center;
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+.form-note a {
+    color: #4ecdc4;
+    text-decoration: none;
+}
+
+.form-note a:hover {
+    text-decoration: underline;
+}
+
+.hidden-field {
+    position: absolute;
+    left: -9999px;
+}
+
+@media (max-width: 600px) {
+    .quote-form {
+        padding: 22px;
+        border-radius: 8px;
+    }
+    .form-title {
+        font-size: 1.4rem;
+    }
+}
