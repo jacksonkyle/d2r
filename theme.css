@@ -584,3 +584,35 @@ main.checkout-main {
         scroll-behavior: auto !important;
     }
 }
+
+/* Checkout: order-inquiry notice banner */
+.checkout-notice {
+    max-width: 1200px;
+    margin: 0 auto 24px;
+    padding: 18px 24px;
+    background: rgba(78, 205, 196, 0.08);
+    border: 1px solid rgba(78, 205, 196, 0.4);
+    border-radius: 10px;
+    color: #ddd;
+    font-size: 0.98rem;
+    line-height: 1.6;
+}
+
+.checkout-notice strong {
+    color: #4ecdc4;
+}
+
+.security-info {
+    color: #aaa !important;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-top: 12px;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 6px;
+}
+
+.security-info i {
+    color: #4ecdc4;
+    margin-right: 6px;
+}

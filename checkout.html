@@ -450,9 +450,18 @@
                 <a href="catalog.html" class="btn btn-primary">Continue Shopping</a>
             </div>
 
+            <!-- Order inquiry notice -->
+            <div class="checkout-notice" role="note">
+                <strong>How orders work:</strong> Submit this form and Matthew will email you within 1-2 business days with payment options (Venmo, CashApp, check, or invoice) and shipping details. Nothing is charged through this site.
+            </div>
+
             <!-- Checkout Form -->
             <div class="checkout-form" id="checkoutForm">
-                <form id="orderForm">
+                <form id="orderForm" name="order-inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
+                    <input type="hidden" name="form-name" value="order-inquiry">
+                    <input type="hidden" name="cart-contents" id="cartContentsHidden" value="">
+                    <input type="hidden" name="order-total" id="orderTotalHidden" value="">
+                    <p class="hidden-field" style="position:absolute;left:-9999px"><label>Don't fill this out: <input name="bot-field"></label></p>
                     <!-- Contact Information -->
                     <div class="form-section">
                         <h2 class="section-title">
@@ -461,10 +470,10 @@
                         </h2>
                         <div class="form-group">
                             <label class="form-label" for="email">Email Address *</label>
-                            <input type="email" id="email" class="form-input" required placeholder="your@email.com">
+                            <input type="email" id="email" name="email" class="form-input" required placeholder="your@email.com">
                         </div>
                         <div class="checkbox-group">
-                            <input type="checkbox" id="newsletter">
+                            <input type="checkbox" id="newsletter" name="newsletter_optin">
                             <label for="newsletter">Subscribe to our newsletter for updates and exclusive offers</label>
                         </div>
                     </div>
@@ -478,29 +487,29 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label class="form-label" for="firstName">First Name *</label>
-                                <input type="text" id="firstName" class="form-input" required>
+                                <input type="text" id="firstName" name="first_name" class="form-input" required>
                             </div>
                             <div class="form-group">
                                 <label class="form-label" for="lastName">Last Name *</label>
-                                <input type="text" id="lastName" class="form-input" required>
+                                <input type="text" id="lastName" name="last_name" class="form-input" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="address">Address *</label>
-                            <input type="text" id="address" class="form-input" required placeholder="123 Main Street">
+                            <input type="text" id="address" name="address" class="form-input" required placeholder="123 Main Street">
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="apartment">Apartment, suite, etc. (optional)</label>
-                            <input type="text" id="apartment" class="form-input" placeholder="Apt 4B">
+                            <input type="text" id="apartment" name="apartment" class="form-input" placeholder="Apt 4B">
                         </div>
                         <div class="form-row">
                             <div class="form-group">
                                 <label class="form-label" for="city">City *</label>
-                                <input type="text" id="city" class="form-input" required>
+                                <input type="text" id="city" name="city" class="form-input" required>
                             </div>
                             <div class="form-group">
                                 <label class="form-label" for="state">State *</label>
-                                <select id="state" class="form-select" required>
+                                <select id="state" name="state" class="form-select" required>
                                     <option value="">Select State</option>
                                     <option value="AL">Alabama</option>
                                     <option value="CA">California</option>
@@ -514,11 +523,11 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label class="form-label" for="zipCode">ZIP Code *</label>
-                                <input type="text" id="zipCode" class="form-input" required pattern="[0-9]{5}(-[0-9]{4})?" placeholder="12345">
+                                <input type="text" id="zipCode" name="zip" class="form-input" required pattern="[0-9]{5}(-[0-9]{4})?" placeholder="12345">
                             </div>
                             <div class="form-group">
                                 <label class="form-label" for="phone">Phone Number</label>
-                                <input type="tel" id="phone" class="form-input" placeholder="(555) 123-4567">
+                                <input type="tel" id="phone" name="phone" class="form-input" placeholder="(555) 123-4567">
                             </div>
                         </div>
                     </div>
@@ -551,51 +560,26 @@
                         </div>
                     </div>
 
-                    <!-- Payment Information -->
+                    <!-- Preferred contact for payment arrangement -->
                     <div class="form-section">
                         <h2 class="section-title">
                             <i class="fas fa-credit-card"></i>
-                            Payment Information
+                            Payment Preference
                         </h2>
-                        <div class="payment-methods">
-                            <div class="payment-method selected" data-payment="card">
-                                <i class="fas fa-credit-card"></i>
-                                <div>Credit Card</div>
-                            </div>
-                            <div class="payment-method" data-payment="paypal">
-                                <i class="fab fa-paypal"></i>
-                                <div>PayPal</div>
-                            </div>
-                            <div class="payment-method" data-payment="apple">
-                                <i class="fab fa-apple-pay"></i>
-                                <div>Apple Pay</div>
-                            </div>
+                        <p style="margin:0 0 14px;color:#bbb;font-size:0.95rem">Pick how you'd like Matthew to arrange payment after he confirms your order:</p>
+                        <div class="form-group">
+                            <label class="form-label" for="paymentPreference">Preferred payment method</label>
+                            <select id="paymentPreference" name="payment_preference" class="form-select">
+                                <option value="Venmo">Venmo</option>
+                                <option value="CashApp">Cash App</option>
+                                <option value="Check">Check by mail</option>
+                                <option value="Invoice / bank transfer">Invoice / bank transfer</option>
+                                <option value="Other - I'll discuss">Other — discuss with Matthew</option>
+                            </select>
                         </div>
-
-                        <div id="cardPayment">
-                            <div class="form-group">
-                                <label class="form-label" for="cardNumber">Card Number *</label>
-                                <input type="text" id="cardNumber" class="form-input" required placeholder="1234 5678 9012 3456" maxlength="19">
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label class="form-label" for="expiry">Expiry Date *</label>
-                                    <input type="text" id="expiry" class="form-input" required placeholder="MM/YY" maxlength="5">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label" for="cvv">CVV *</label>
-                                    <input type="text" id="cvv" class="form-input" required placeholder="123" maxlength="4">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label" for="cardName">Name on Card *</label>
-                                <input type="text" id="cardName" class="form-input" required placeholder="John Doe">
-                            </div>
-                        </div>
-
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="billingAddress">
-                            <label for="billingAddress">Billing address is different from shipping address</label>
+                        <div class="form-group">
+                            <label class="form-label" for="orderNotes">Notes (optional)</label>
+                            <textarea id="orderNotes" name="notes" class="form-input" rows="3" placeholder="Anything Matthew should know about this order — sizing, deadline, gift, etc."></textarea>
                         </div>
                     </div>
                 </form>
@@ -626,12 +610,12 @@
                     </div>
                 </div>
                 <button type="submit" class="place-order-btn" id="placeOrderBtn" form="orderForm">
-                    <i class="fas fa-lock"></i>
-                    Complete Order
+                    <i class="fas fa-paper-plane"></i>
+                    Submit Order Inquiry
                 </button>
                 <div class="security-info">
                     <i class="fas fa-shield-alt"></i>
-                    <span>Your payment information is secure and encrypted</span>
+                    <span>No card details are taken on this site. Matthew confirms each order and arranges payment by your preferred method.</span>
                 </div>
             </div>
         </div>
