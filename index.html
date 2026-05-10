@@ -185,6 +185,47 @@
             </div>
         </section>
 
+        <section class="clients-section" id="clients" aria-labelledby="clients-heading">
+            <div class="container">
+                <h2 id="clients-heading" class="section-title">Schools &amp; Organizations</h2>
+                <p class="clients-intro">Over 20+ years, Matthew's murals have appeared in schools, businesses, and public spaces across Hampton Roads and beyond.</p>
+
+                <div class="clients-grid">
+                    <div class="clients-group">
+                        <h3>Public Schools</h3>
+                        <ul>
+                            <li>College Park Elementary</li>
+                            <li>Kingston Elementary</li>
+                            <li>Plaza Middle School</li>
+                            <li>Landstown Schools</li>
+                            <li>Virginia Elementary</li>
+                        </ul>
+                    </div>
+                    <div class="clients-group">
+                        <h3>Public Spaces</h3>
+                        <ul>
+                            <li>Norfolk Children's Museum</li>
+                            <li>VBFD Fire Station (17th Street)</li>
+                            <li>Recreation centers across Hampton Roads</li>
+                            <li>Sandbridge VA private installations</li>
+                        </ul>
+                    </div>
+                    <div class="clients-group">
+                        <h3>Service Areas</h3>
+                        <ul>
+                            <li>Virginia Beach, VA</li>
+                            <li>Norfolk, VA</li>
+                            <li>Chesapeake, VA</li>
+                            <li>Suffolk, VA</li>
+                            <li>Out-of-state by arrangement</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p class="clients-note">If you'd like a reference for a specific project, mention it in your <a href="#contact">quote request</a> and Matthew will connect you with the relevant contact.</p>
+            </div>
+        </section>
+
         <section class="portfolio-preview" id="portfolio">
             <div class="container">
                 <h2 class="section-title">Portfolio Gallery</h2>
@@ -360,17 +401,17 @@
         </section>
     </main>
 
-    <div id="imageModal" class="modal">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <button class="nav-arrow prev" onclick="prevImage()">&#10094;</button>
-        <button class="nav-arrow next" onclick="nextImage()">&#10095;</button>
-        <img class="modal-content" id="modalImage" onclick="toggleZoom()">
-        <div class="zoom-controls">
-            <button class="zoom-btn" onclick="zoomIn()">+</button>
-            <button class="zoom-btn" onclick="zoomOut()">-</button>
-            <button class="zoom-btn" onclick="resetZoom()">⌂</button>
+    <div id="imageModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalCaption" aria-hidden="true">
+        <button class="close" type="button" onclick="closeModal()" aria-label="Close image viewer">&times;</button>
+        <button class="nav-arrow prev" type="button" onclick="prevImage()" aria-label="Previous image">&#10094;</button>
+        <button class="nav-arrow next" type="button" onclick="nextImage()" aria-label="Next image">&#10095;</button>
+        <img class="modal-content" id="modalImage" alt="" onclick="toggleZoom()">
+        <div class="zoom-controls" role="toolbar" aria-label="Image zoom controls">
+            <button class="zoom-btn" type="button" onclick="zoomIn()" aria-label="Zoom in">+</button>
+            <button class="zoom-btn" type="button" onclick="zoomOut()" aria-label="Zoom out">-</button>
+            <button class="zoom-btn" type="button" onclick="resetZoom()" aria-label="Reset zoom">⌂</button>
         </div>
-        <div class="modal-caption" id="modalCaption"></div>
+        <div class="modal-caption" id="modalCaption" role="status" aria-live="polite"></div>
     </div>
 
     <footer>
@@ -464,13 +505,48 @@
             if (currentImageIndex === -1) currentImageIndex = 0;
 
             modal.style.display = 'block';
+            modal.setAttribute('aria-hidden', 'false');
             modalImg.src = currentGallery[currentImageIndex].src;
+            modalImg.alt = currentGallery[currentImageIndex].alt || '';
             modalCaption.textContent = currentGallery[currentImageIndex].alt;
+
+            // Remember the trigger so we can return focus on close
+            modal._lastFocus = document.activeElement;
+            // Focus the close button after opening
+            const closeBtn = modal.querySelector('.close');
+            if (closeBtn) closeBtn.focus();
         }
 
         function closeModal() {
-            document.getElementById('imageModal').style.display = 'none';
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+            modal.setAttribute('aria-hidden', 'true');
+            // Return focus to whatever opened the modal
+            if (modal._lastFocus && typeof modal._lastFocus.focus === 'function') {
+                modal._lastFocus.focus();
+                modal._lastFocus = null;
+            }
         }
+
+        // Escape closes modal; arrow keys navigate gallery
+        document.addEventListener('keydown', function(e) {
+            const modal = document.getElementById('imageModal');
+            if (!modal || modal.getAttribute('aria-hidden') === 'true') return;
+            if (e.key === 'Escape') { e.preventDefault(); closeModal(); }
+            else if (e.key === 'ArrowRight') { e.preventDefault(); nextImage(); }
+            else if (e.key === 'ArrowLeft') { e.preventDefault(); prevImage(); }
+            else if (e.key === 'Tab') {
+                // Trap focus inside modal
+                const focusables = modal.querySelectorAll('button, [href], input, [tabindex]:not([tabindex="-1"])');
+                if (!focusables.length) return;
+                const first = focusables[0], last = focusables[focusables.length - 1];
+                if (e.shiftKey && document.activeElement === first) {
+                    e.preventDefault(); last.focus();
+                } else if (!e.shiftKey && document.activeElement === last) {
+                    e.preventDefault(); first.focus();
+                }
+            }
+        });
 
         function nextImage() {
             if (currentGallery.length > 1) {

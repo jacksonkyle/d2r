@@ -537,6 +537,10 @@ main {
     z-index: 2001;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
     transition: color 0.3s ease;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    line-height: 1;
 }
 
 .close:hover {
@@ -1533,4 +1537,118 @@ button:focus-visible,
 .hamburger:focus-visible {
     outline: 3px solid #4ecdc4;
     outline-offset: 3px;
+}
+
+/* ========== Schools & Organizations (trust signal) ========== */
+.clients-section {
+    padding: 100px 20px;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+}
+
+.clients-intro {
+    text-align: center;
+    color: #ddd;
+    font-size: 1.15rem;
+    max-width: 800px;
+    margin: 0 auto 50px;
+}
+
+.clients-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.clients-group {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 28px 26px;
+}
+
+.clients-group h3 {
+    color: #00ccff;
+    font-size: 1.15rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid rgba(0, 204, 255, 0.3);
+    padding-bottom: 10px;
+}
+
+.clients-group ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.clients-group li {
+    padding: 6px 0;
+    color: #f0f0f0;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.clients-group li::before {
+    content: "→ ";
+    color: #4ecdc4;
+    margin-right: 4px;
+}
+
+.clients-note {
+    text-align: center;
+    color: #bbb;
+    margin-top: 40px;
+    font-size: 0.95rem;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.clients-note a {
+    color: #4ecdc4;
+}
+
+/* ========== Breadcrumb navigation ========== */
+.breadcrumb-nav {
+    padding: 100px 20px 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.breadcrumb-nav ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 0.95rem;
+    color: #ccc;
+}
+
+.breadcrumb-nav li::after {
+    content: " ›";
+    margin-left: 8px;
+    color: #666;
+}
+
+.breadcrumb-nav li:last-child::after {
+    content: none;
+}
+
+.breadcrumb-nav a {
+    color: #4ecdc4;
+    text-decoration: none;
+}
+
+.breadcrumb-nav a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb-nav li[aria-current="page"] {
+    color: #fff;
 }
