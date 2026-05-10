@@ -54,7 +54,7 @@ const products = [
         id: 6,
         title: "Custom D2R Wall Mural",
         price: 299.99,
-        image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&h=300&fit=crop",
+        image: "Images/Murals/College Park Earth.webp",
         category: "wall-murals",
         description: "Custom D2R branded wall mural perfect for businesses, studios, or personal spaces. Professional installation available.",
         variants: ["Small (3x2ft)", "Medium (6x4ft)", "Large (9x6ft)", "Custom Size"]
