@@ -189,6 +189,12 @@
     </style>
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="polish.css">
+    <style>
+        /* The body's fixed logo background is what was duplicating the hero
+           logo. Drop it on the homepage — the .logo-hero section already
+           shows the logo, and below it the page reads cleanly on solid black. */
+        body { background-image: none !important; }
+    </style>
 </head>
 <body>
     <a href="#main" class="skip-link">Skip to content</a>
