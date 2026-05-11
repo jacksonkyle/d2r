@@ -176,6 +176,8 @@
         .nav-menu.active{transform:translateX(0)}
         main{margin-top:80px}
         .hero-section{padding:100px 20px;text-align:center;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+        .logo-hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:80px 20px 40px;box-sizing:border-box}
+        .logo-hero picture,.logo-hero img{display:block;width:min(80vw,80vh,720px);height:auto;max-width:100%}
         .hero-title{font-size:5rem;font-weight:bold;margin-bottom:20px;text-transform:uppercase;letter-spacing:4px;text-shadow:3px 3px 6px rgba(0,0,0,.8);background:linear-gradient(45deg,#00ccff,#ff00cc,#00ff88);background-size:200% 200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradientShift 3s ease-in-out infinite}
         @keyframes gradientShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
         .hero-subtitle{font-size:2rem;color:#fff;margin-bottom:60px;text-shadow:2px 2px 4px rgba(0,0,0,.8);font-weight:bold}
@@ -184,27 +186,12 @@
         .signature-image img{width:100%;height:300px;object-fit:cover;transition:filter .3s ease}
         .skip-link{position:absolute;top:-100px;left:0;background:#4ecdc4;color:#000;padding:12px 20px;z-index:9999;text-decoration:none;font-weight:700;border-radius:0 0 6px 0;transition:top .15s ease}
         .skip-link:focus{top:0}
-        .splash-screen{position:fixed;inset:0;background:#000;z-index:99999;display:flex;align-items:center;justify-content:center;animation:splashOut .35s ease 2.05s forwards;will-change:opacity;-webkit-backface-visibility:hidden;backface-visibility:hidden}
-        .splash-logo{width:min(75vw,75vh,560px);transform-origin:center center;animation:splashLogo 1.9s cubic-bezier(.34,1.56,.64,1) both;will-change:transform,opacity;-webkit-backface-visibility:hidden;backface-visibility:hidden}
-        .splash-logo picture,.splash-logo img{display:block;width:100%;height:auto}
-        @keyframes splashLogo{0%{opacity:0;-webkit-transform:scale(.5);transform:scale(.5)}12%{opacity:1;-webkit-transform:scale(.5);transform:scale(.5)}42%{-webkit-transform:scale(1.28);transform:scale(1.28)}58%{-webkit-transform:scale(.9);transform:scale(.9)}72%{-webkit-transform:scale(1.08);transform:scale(1.08)}84%{-webkit-transform:scale(.97);transform:scale(.97)}93%{-webkit-transform:scale(1.02);transform:scale(1.02)}100%{opacity:1;-webkit-transform:scale(1);transform:scale(1)}}
-        @keyframes splashOut{to{opacity:0;visibility:hidden;pointer-events:none}}
-        @media (prefers-reduced-motion:reduce){.splash-logo{animation:splashLogoReduced 1.4s ease both}@keyframes splashLogoReduced{0%{opacity:0;transform:scale(.9)}40%{opacity:1;transform:scale(1.03)}100%{opacity:1;transform:scale(1)}}}
     </style>
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="polish.css">
 </head>
 <body>
     <a href="#main" class="skip-link">Skip to content</a>
-    <div class="splash-screen" aria-hidden="true">
-        <div class="splash-logo">
-            <picture>
-                <source srcset="Images/logo.avif" type="image/avif">
-                <source srcset="Images/logo.webp" type="image/webp">
-                <img src="Images/logo.jpg" alt="" width="1600" height="1466" decoding="sync" fetchpriority="high">
-            </picture>
-        </div>
-    </div>
     <div class="overlay"></div>
     
     <header>
@@ -226,6 +213,14 @@
     </header>
 
     <main id="main">
+        <section class="logo-hero" aria-label="Dreams2Reality">
+            <picture>
+                <source srcset="Images/logo.avif" type="image/avif">
+                <source srcset="Images/logo.webp" type="image/webp">
+                <img src="Images/logo.jpg" alt="Dreams2Reality" width="1600" height="1466" decoding="sync" fetchpriority="high">
+            </picture>
+        </section>
+
         <section class="hero-section">
             <h1 class="hero-title">Dreams2Reality</h1>
             <p class="hero-subtitle">Matthew Jackson - Professional Artist</p>
